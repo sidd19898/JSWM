@@ -1,0 +1,61 @@
+body{
+    height: 100%;
+}
+
+.card{
+    width: 400px;
+    height: 500px;
+    background-color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 25px;
+}
+
+
+.submit-btn{
+  width: 100px;
+  background-color: #43C6AC;
+  border-radius: 30px;
+  font-size: 20px;
+  padding: 7px;
+  color: #191645;
+  border-color: #191645;
+}
+
+.submit-btn:hover{
+  width: 100px;
+  border-radius: 30px;
+  font-size: 20px;
+  padding: 10px;
+  background-color:#191645 ;
+  color: #43C6AC;
+  border-color:#43C6AC;
+}
+
+.title{
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.fname{
+    font-size: 40px;
+    margin: auto;
+}
+.lname{
+    margin: auto;
+    font-size: 25px;
+}
+.email{
+    margin: auto;
+    font-size: 25px;
+}
+.password{
+    margin: auto;
+    font-size: 25px;
+}
+.submit{
+    margin: auto;
+}
+

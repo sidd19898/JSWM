@@ -1,0 +1,201 @@
+.header{
+  color: white;
+  font-size: 5rem;
+  text-align: center;
+  -webkit-text-stroke: 2px #191645;
+}
+
+.middle{
+  width: 100%;
+  height: 300px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  background-color: #191645;
+  border-radius: 1.25rem;
+  color: white;
+  text-align: center;
+  margin: 0 auto;
+  padding-top: 100px;
+}
+
+
+.h1{
+  font-family: "Archivo Black", sans-serif;
+  font-weight: 400;
+  font-size: 100px;
+  font-style: normal;
+  -webkit-text-stroke: 2px white;
+  color: #191645;
+}
+
+.faq{
+  width: 100%;
+  height: 680px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 20px;
+  padding-top: 10px;
+  margin-top: 10px;
+  background-color: #191645;
+}
+
+.login-btn{
+  width: 100px;
+  background-color: #43C6AC;
+  border-radius: 30px;
+  font-size: 20px;
+  margin-right: 10px;
+  padding: 10px;
+  margin-top: 50px;
+  color: #191645;
+  border-color: white;
+}
+
+.login-btn:hover{
+  width: 100px;
+  border-radius: 30px;
+  font-size: 20px;
+  margin-right: 10px;
+  padding: 10px;
+  margin-top: 50px;
+  background-color:#191645 ;
+  color: #43C6AC;
+  border-color:#43C6AC;
+}
+
+.signup-btn:hover{
+  width: 100px;
+  border-radius: 30px;
+  font-size: 20px;
+  margin-right: 10px;
+  padding: 10px;
+  margin-top: 50px;
+  background-color:#191645 ;
+  color: #43C6AC;
+  border-color:#43C6AC;
+}
+
+.signup-btn{
+  border-color: white;
+  width: 100px;
+  margin-top: 50px;
+  background-color: #43C6AC;
+  border-radius: 30px;
+  font-size: 20px;
+  margin-left: 10px;
+  padding: 10px;
+  color: #191645
+}
+
+.faq-title{
+  margin-left: 49px;
+  font-size: 45px;
+  color: #43C6AC;
+  -webkit-text-stroke: 1px white;
+  color: #191645;
+}
+
+.que{
+box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+width: 95%;
+height: 120px;
+padding-top: 5px;
+border-radius: 10px;
+margin-bottom: 40px;
+font-size: 40px;
+background-color: white;
+color: #191645;
+margin: 0 auto;
+padding-left: 5px;
+font-family: "IBM Plex Serif", serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.ans{
+width: 95%;
+height: 50px;
+border-radius: 10px;
+margin-top: 30px;
+padding-top: 5px;
+padding-bottom: 5px;
+font-size: 25px;
+background-color: white;
+color: #191645;
+margin: 0 auto;
+padding-left: 5px;
+padding-top: 5px;
+padding-bottom: 10px;
+font-family: "SN Pro", sans-serif;
+font-optical-sizing: auto;
+font-style: normal;
+}
+
+
+@media (max-width: 1290px){
+.que{
+font-size: 25px;
+}
+.ans{
+font-size: 25px;
+}
+}
+
+@media (max-width: 846px){
+.que{
+font-size: 20px;
+height: 80px;
+}
+.ans{
+font-size: 15px;
+height: 30px;
+}
+
+.faq{
+  height: 500px;
+}
+}
+
+@media (max-width: 523px){
+.que{
+font-size: 18px;
+height: 100px;
+}
+.ans{
+font-size: 15px;
+height: 30px;
+}
+
+.faq{
+  height: 560px;
+}
+
+.h1{
+  font-size: 80px;
+}
+
+.middle{
+  height: 350px;
+}
+}
+
+@media (max-width: 422px){
+.que{
+font-size: 18px;
+height: 130px;
+}
+.ans{
+font-size: 15px;
+height: 30px;
+}
+
+.faq{
+  height: 670px;
+}
+
+.h1{
+  font-size: 60px;
+}
+
+.middle{
+  height: 300px;
+}
+}
