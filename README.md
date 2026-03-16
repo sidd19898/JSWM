@@ -5,8 +5,5 @@ JSWM is a Professional TODO tasks system where It has education features + New t
 
 ## System Design
 
-### ER Diagram
-![ER Diagram](https://drive.google.com/file/d/1YVZCsPnA-8IQ723ImzqLVZJgqpMpcYzF/view?usp=sharing)
-
 ### UI Design
 Figma Prototype: https://www.figma.com/design/xD1UF6ODIaTftikYuYBJDX/Untitled?node-id=12-2&t=uhSoQRkNwv6NiEqt-1
