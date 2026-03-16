@@ -6,6 +6,7 @@ const connectDB = require("../config/db.js")
 const authMiddleware = require("../middleware/authMiddleware.js")
 const router = express.Router();
 const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
 const jsonParser = bodyParser.json()
 connectDB();
 
@@ -51,9 +52,6 @@ router.post("/create",jsonParser,authMiddleware,async(req,res) => {
 
 });
 
-
-
-
 const update = z.object({
     title:z.string(),
     from:z.string(),
@@ -62,19 +60,26 @@ const update = z.object({
     status:z.boolean(),
 })
 
+const docInput = z.object({
+     id: z.string().refine(
+    (val) => mongoose.Types.ObjectId.isValid(val),
+    {message: "Invalid ObjectId"}
+)
+})
+
 
 router.put("/update/:id",jsonParser,authMiddleware,async(req,res) => {
 
-    const {success} =  update.safeParse(req.body);
-  //  const {suplex} = docInput.safeParse(req.params.id);
+    const bodyValidation =  update.safeParse(req.body);
+    const paramValidation = docInput.safeParse(req.params);
 
-    if(!success){
+    if(!bodyValidation.success || !paramValidation.success){
         res.json({
             message:"input is not valid"
         })
     }else{
+
     const id = req.params.id;
-    console.log(typeof(id));
     const updater = await Task.findByIdAndUpdate(
         id,
     {
@@ -92,10 +97,10 @@ router.put("/update/:id",jsonParser,authMiddleware,async(req,res) => {
 });
 
 router.delete("/delete/:id",jsonParser,authMiddleware,async(req,res) => {
-    
-    const {success} = ObjectIdSchema.safeParse(req.params.id);
 
-    if(!success){
+    const paramValidation = docInput.safeParse(req.params);
+
+    if(!paramValidation.success){
         res.json({
             message:"Input is not valid"
         })
