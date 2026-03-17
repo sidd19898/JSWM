@@ -1,4 +1,3 @@
-require("dotenv").config();
 const express = require("express");
 const z = require("zod");
 const Task = require("../model/jswm/task.js");
@@ -6,7 +5,6 @@ const connectDB = require("../config/db.js")
 const authMiddleware = require("../middleware/authMiddleware.js")
 const router = express.Router();
 const bodyParser = require("body-parser");
-const mongoose = require("mongoose");
 const jsonParser = bodyParser.json()
 connectDB();
 

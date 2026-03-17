@@ -1,11 +1,12 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 const{Schema, model} = mongoose;
 
 const habitschema = new Schema({
     Title:String,
     From:String,
     To:String,
+    Status:Boolean,
 })
 
 const Habit = model('Habit', habitschema);
-export default Habit;
+module.exports = Habit;
