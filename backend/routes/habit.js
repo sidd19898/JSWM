@@ -39,6 +39,23 @@ const end = Temporal.PlainDate.from(req.body.to);
 const duration = end.since(start); 
 const days = duration.days;
 
+for (let i = 0; i < days; i++){
+const date = Temporal.PlainDate.from(req.body.from);
+const iter = date.add({days:i});
+const ok = iter.toString();
+
+const Habiter = Habit.create({
+    Title:req.body.title,
+    From:req.body.from,
+    To:req.body.to,
+    Status:req.body.status,
+    Date:ok
+    })
+}
+
+res.json({
+    message:"Habit created successfully"
+})
 
     }
 

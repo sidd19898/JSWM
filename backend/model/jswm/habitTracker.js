@@ -6,6 +6,7 @@ const habitschema = new Schema({
     From:String,
     To:String,
     Status:Boolean,
+    Date:String,
 })
 
 const Habit = model('Habit', habitschema);
