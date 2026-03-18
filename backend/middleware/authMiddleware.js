@@ -5,7 +5,7 @@ const JWT_SECRET = process.env.JWT_SECRET;
 
 const authMiddleware = (req, res, next) => {
     const authHeader = req.headers.authorization;
-
+console.log(authHeader);
     if (!authHeader || !authHeader.startsWith('Bearer ')) {
         return res.status(403).json({});
     }
@@ -14,9 +14,7 @@ const authMiddleware = (req, res, next) => {
 
     try {
         const decoded = jwt.verify(token, JWT_SECRET);
-console.log(decoded);
         req.userId = decoded.userId;
-
         next();
     } catch (err) {
         return res.status(403).json({message:"Invalid User"});

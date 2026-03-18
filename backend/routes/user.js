@@ -2,6 +2,7 @@ const express = require("express");
 const z = require("zod");
 const user = require('../model/jswm/user.js');
 const connectDB = require("../config/db.js");
+require("dotenv").config();
 const JWT_SECRET = process.env.JWT_SECRET
 const bodyParser = require("body-parser");
 const jwt = require("jsonwebtoken");
@@ -42,15 +43,17 @@ router.post("/signup", jsonParser,async(req,res)=>{
         })
     }
 
-    const newUser = user.create({
+    const newUser = new user({
     firstname : req.body.firstname,
     lastname : req.body.lastname,                   
     email : req.body.email,
     password : req.body.password,
     });
-                                                                
-    const userId = newUser._id;
 
+    const role = await newUser.save()
+                                                                
+    const userId = role._id;
+    console.log(userId);
     const Token = jwt.sign({userId},JWT_SECRET);
 
     res.json({

@@ -60,7 +60,8 @@ const Habitcreate = Habit.create({
     From:req.body.from,
     To:req.body.to,
     Status:req.body.status,
-    Date:ok
+    Date:ok,
+    user_id:req.userId
     })
 }
 

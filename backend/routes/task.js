@@ -48,8 +48,7 @@ router.post("/create",jsonParser,authMiddleware,async(req,res) => {
             message:"Task already created"
         })
     }else{
-   
-    console.log(req.userId)
+
     const Tasker = Task.create({
     Title:req.body.title,
     From:req.body.from,
