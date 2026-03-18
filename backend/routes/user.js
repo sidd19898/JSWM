@@ -42,14 +42,14 @@ router.post("/signup", jsonParser,async(req,res)=>{
         })
     }
 
-    const User = user.create({
+    const newUser = user.create({
     firstname : req.body.firstname,
     lastname : req.body.lastname,                   
     email : req.body.email,
     password : req.body.password,
     });
                                                                 
-    const userId = User._id;
+    const userId = newUser._id;
 
     const Token = jwt.sign({userId},JWT_SECRET);
 
@@ -81,9 +81,9 @@ router.post("/signin",jsonParser,async(req,res)=>{
 
     if(validity){
         
-        const token = jwt.sign({
-            userId:user._id
-        },JWT_SECRET);
+        const token = jwt.sign(
+            {userId:validity._id},
+            JWT_SECRET);
 
         res.json({
             token:token

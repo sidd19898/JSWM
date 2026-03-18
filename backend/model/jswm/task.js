@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const { string } = require("zod");
 const{Schema, model} = mongoose;
 
 const taskSchema = new Schema({
@@ -7,6 +8,7 @@ const taskSchema = new Schema({
     To:String,
     Date:String,
     Status:Boolean,
+    user_id:String,
 })
 
 const Task = model('Task', taskSchema);

@@ -6,7 +6,21 @@ const authMiddleware = require("../middleware/authMiddleware.js")
 const router = express.Router();
 const bodyParser = require("body-parser");
 const jsonParser = bodyParser.json()
+const ratelimiter = require("express-rate-limit")
+const helmet = require("helmet")
+require("dotenv").config();
+const jwt = require("jsonwebtoken");
+const JWT_SECRET = process.env.JWT_SECRET;
 connectDB();
+
+const limiter = ratelimiter.rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max:100
+})
+
+router.use(limiter)
+router.use(helmet())
+router.use(express.json({limit:"10kb"}))
 
 const create = z.object({
     title:z.string(),
@@ -34,13 +48,15 @@ router.post("/create",jsonParser,authMiddleware,async(req,res) => {
             message:"Task already created"
         })
     }else{
-    
+   
+    console.log(req.userId)
     const Tasker = Task.create({
     Title:req.body.title,
     From:req.body.from,
     To:req.body.to,
     Date:req.body.date,
-    Status:req.body.status
+    Status:req.body.status,
+    user_id:req.userId
     })
 
     res.json({
@@ -113,5 +129,19 @@ router.delete("/delete/:id",jsonParser,authMiddleware,async(req,res) => {
 }
 
 });
+
+router.use((err, req, res, next) => {
+    console.error("Error:", err.message)
+
+    if (err instanceof SyntaxError && err.status === 400 && 'body' in err) {
+        return res.status(400).json({
+            message: "Invalid JSON format"
+        })
+    }
+
+    res.status(500).json({
+        message: "Internal server error"
+    })
+})
 
 module.exports = router;
