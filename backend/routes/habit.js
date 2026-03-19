@@ -78,12 +78,16 @@ const update = z.object({
     status:z.boolean().optional(),
 }).strict();
 
+const docInput = z.object({
+     name: z.string()
+})
 
 router.patch("/update/:name",jsonParser,authMiddleware,async(req,res) => {
     
     const result = update.safeParse(req.body);
+    const paramValidation = docInput.safeParse(req.params);
 
-    if(!result.success){
+    if(!result.success || !paramValidation.success){
         res.json({
             message:"Input is invalid"
         })
@@ -98,8 +102,18 @@ router.patch("/update/:name",jsonParser,authMiddleware,async(req,res) => {
             message:"Habit already present"
         })
     }else{
+        
+    const filter = {user_id:req.userId,Title:req.params.name}
+    const arr = {
+        $set:{
+    Title:req.body.title,
+    From:req.body.from,
+    To:req.body.to,
+    Status:req.body.status
+        }
+    }
 
-    const habitupdate = await Habit.updateMany({Title:req.params.name},{Title:title,Status:status})
+    const habitupdate = await Habit.updateMany(filter,arr)
 
     res.json({
         message:"habit updated successfully"

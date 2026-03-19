@@ -11,6 +11,7 @@ const helmet = require("helmet")
 require("dotenv").config();
 const jwt = require("jsonwebtoken");
 const JWT_SECRET = process.env.JWT_SECRET;
+const mongoose = require("mongoose");
 connectDB();
 
 const limiter = ratelimiter.rateLimit({
@@ -93,15 +94,20 @@ router.put("/update/:id",jsonParser,authMiddleware,async(req,res) => {
     }else{
 
     const id = req.params.id;
-    const updater = await Task.findByIdAndUpdate(
-        id,
-    {
+
+    const filter = {user_id:req.userId,_id:id};
+
+    const arr = {
+    $set:{
     Title:req.body.title,
     From:req.body.from,
     To:req.body.to,
     Date:req.body.date,
     Status:req.body.status
-    });
+    }
+    };
+
+    const result = await Task.updateOne(filter, arr);
 
     res.json({
         message:"task updated successfully!"
