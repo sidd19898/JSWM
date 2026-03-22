@@ -37,7 +37,7 @@ router.post("/create",jsonParser,authMiddleware,async(req,res) => {
         })
     }
 
-    const present = await Habit.findOne({Title:req.body.title});
+    const present = await Habit.findOne({Title:req.body.title,user_id:req.userId});
 
     if(present){
         res.json({
@@ -75,6 +75,8 @@ res.json({
 
 const update = z.object({
     title:z.string(),
+    from:z.string(),
+    to:z.string(),
     status:z.boolean().optional(),
 }).strict();
 
@@ -82,7 +84,7 @@ const docInput = z.object({
      name: z.string()
 })
 
-router.patch("/update/:name",jsonParser,authMiddleware,async(req,res) => {
+router.put("/update/:name",jsonParser,authMiddleware,async(req,res) => {
     
     const result = update.safeParse(req.body);
     const paramValidation = docInput.safeParse(req.params);
@@ -94,8 +96,8 @@ router.patch("/update/:name",jsonParser,authMiddleware,async(req,res) => {
     }
 
     const { title , status } = result.data 
-
-    const present = await Habit.findOne({Title:req.params.name});
+    console.log(req.userId);
+    const present = await Habit.findOne({Title:req.body.title,user_id:req.userId});
 
     if(present){
         res.json({
@@ -104,6 +106,7 @@ router.patch("/update/:name",jsonParser,authMiddleware,async(req,res) => {
     }else{
         
     const filter = {user_id:req.userId,Title:req.params.name}
+    
     const arr = {
         $set:{
     Title:req.body.title,
