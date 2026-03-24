@@ -146,6 +146,18 @@ router.delete("/delete/:name",jsonParser,authMiddleware,async(req,res) => {
 
 })
 
+router.get("/read",jsonParser,authMiddleware,async(req,res) => {
+
+    try{
+    const gotit = await Habit.find({user_id:req.userId});
+    res.send(gotit);
+    }catch(err){
+        console.log(err);
+        res.status(500).send("error retrieving data");
+    }
+})
+
+
 router.use((err, req, res, next) => {
     console.error("Error:", err.message)
 
