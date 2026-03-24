@@ -95,8 +95,6 @@ router.put("/update/:name",jsonParser,authMiddleware,async(req,res) => {
         })
     }
 
-    const { title , status } = result.data 
-    console.log(req.userId);
     const present = await Habit.findOne({Title:req.body.title,user_id:req.userId});
 
     if(present){
@@ -123,6 +121,29 @@ router.put("/update/:name",jsonParser,authMiddleware,async(req,res) => {
     })
 
     }
+})
+
+router.delete("/delete/:name",jsonParser,authMiddleware,async(req,res) => {
+    
+    
+    const paramValidation = docInput.safeParse(req.params);
+
+    if(!paramValidation.success){
+        res.json({
+            message:"Input is invalid"
+        })
+    }
+        
+    const filter = {user_id:req.userId,Title:req.params.name}
+
+    const habitupdate = await Habit.deleteMany(filter)
+
+    if (habitupdate){
+    res.json({
+        message:"habit deleted successfully"
+    })
+}
+
 })
 
 router.use((err, req, res, next) => {
