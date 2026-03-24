@@ -1,12 +1,14 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 const{Schema, model} = mongoose;
 
 const collaborationschema = new Schema({
     Assignto:String,
-    Tasktitle:String,
+    Title:String,
     From:String,
     To:String,
+    Status:Boolean,
+    user_id:String,
 })
 
-const cschema = model('Collaboration', collaborationschema);
-export default cschema;
+const Collaboration = model('Collaboration', collaborationschema);
+module.exports = Collaboration;

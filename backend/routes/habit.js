@@ -56,12 +56,12 @@ const iter = date.add({days:i});
 const ok = iter.toString();
 
 const Habitcreate = Habit.create({
+    
     Title:req.body.title,
     From:req.body.from,
     To:req.body.to,
     Status:req.body.status,
-    Date:ok,
-    user_id:req.userId
+    user_id:req.userId,
     })
 }
 
