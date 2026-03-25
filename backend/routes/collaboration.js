@@ -67,15 +67,10 @@ router.post("/ato",jsonParser,authMiddleware,async(req,res) => {
     }
 })
 
-router.post("/atm",jsonParser,authMiddleware,async(req,res) => {
-
-    
-})
-
-router.get("/read",jsonParser,authMiddleware,async(req,res) => {
+router.get("/atm",jsonParser,authMiddleware,async(req,res) => {
 
     try{
-    const gotit = await Collaboration.find({user_id:req.userId});
+    const gotit = await Collaboration.find({Assignto:req.userId});
     res.send(gotit);
     }catch(err){
         console.log(err);
