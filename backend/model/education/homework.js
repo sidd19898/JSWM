@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 const{Schema, model} = mongoose;
 
 const homeworkschema = new Schema({
@@ -8,5 +8,5 @@ const homeworkschema = new Schema({
     attachfile:String,
 })
 
-const homework = model('homework', homeworkschema);
-export default homework;
+const Homework = model('homework', homeworkschema);
+module.exports = Homework;

@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 const{Schema, model} = mongoose;
 
 const lectureschema = new Schema({
@@ -10,5 +10,5 @@ const lectureschema = new Schema({
     date:String,
 })
 
-const lecture = model('lecture', lectureschema);
-export default lecture;
+const Lecture = model('lecture', lectureschema);
+module.exports = Lecture;

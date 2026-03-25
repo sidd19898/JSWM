@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 const{Schema, model} = mongoose;
 
 const examschema = new Schema({
@@ -9,5 +9,5 @@ const examschema = new Schema({
     totime:String,
 })
 
-const exam = model('exam', examschema);
-export default exam;
+const Exam = model('exam', examschema);
+module.exports = Exam;

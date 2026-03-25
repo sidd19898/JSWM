@@ -71,8 +71,6 @@ const case2 = z.object({
 
 router.post("/signin",jsonParser,async(req,res)=>{
    
-
-   
     const {success} = case2.safeParse(req.body);
     if(!success){
          return res.json({
@@ -98,8 +96,6 @@ router.post("/signin",jsonParser,async(req,res)=>{
         message:"Error while logging in"
     })
    }
-
-   
 })
 
 

@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 const{Schema, model} = mongoose;
 
 const holidayschema = new Schema({
@@ -7,5 +7,5 @@ const holidayschema = new Schema({
     reason:String,
 })
 
-const holiday = model('holiday', holidayschema);
-export default holiday;
+const Holiday = model('holiday', holidayschema);
+module.exports = Holiday;

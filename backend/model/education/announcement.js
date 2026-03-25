@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 const{Schema, model} = mongoose;
 
 const announcementschema = new Schema({
@@ -6,5 +6,5 @@ const announcementschema = new Schema({
     description:String,
 })
 
-const announcement = model('announcement', announcementschema);
-export default announcement;
+const Announcement = model('announcement', announcementschema);
+module.exports = Announcement;
