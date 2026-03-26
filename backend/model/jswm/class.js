@@ -4,7 +4,8 @@ const{Schema, model} = mongoose;
 const classschema = new Schema({
     Classname:String,
     Semister:String,
-    studentscount:String,
+    Studentscount:String,
+    user_id:String,
 })
 
 const Class = model('Class', classschema);

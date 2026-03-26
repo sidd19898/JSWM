@@ -2,12 +2,13 @@ const mongoose = require("mongoose");
 const{Schema, model} = mongoose;
 
 const lectureschema = new Schema({
-    timingfrom:String,
-    timingto:String,
-    classname:String,
-    breakfrom:String,
-    breakto:String,
-    date:String,
+    Timingfrom:String,
+    Timingto:String,
+    Classname:String,
+    Breakfrom:String,
+    Breakto:String,
+    Date:String,
+    user_id:String,
 })
 
 const Lecture = model('lecture', lectureschema);

@@ -1,7 +1,10 @@
 const express = require("express");
 const z = require("zod");
+const Class = require("../model/jswm/class.js")
 const Teachers = require("../model/jswm/teachers.js")
 const Students = require("../model/jswm/students.js")
+const Lectures = require("../model/jswm/lectures.js")
+const authMiddleware = require("../middleware/authMiddleware.js")
 const connectDB = require("../config/db.js")
 const router = express.Router();
 const bodyParser = require("body-parser");
@@ -11,7 +14,6 @@ const helmet = require("helmet")
 require("dotenv").config();
 const jwt = require("jsonwebtoken");
 const JWT_SECRET = process.env.JWT_SECRET;
-const mongoose = require("mongoose");
 connectDB();
 
 const limiter = ratelimiter.rateLimit({
@@ -22,8 +24,6 @@ const limiter = ratelimiter.rateLimit({
 router.use(limiter)
 router.use(helmet())
 router.use(express.json({limit:"10kb"}))
-
-
 
 const Use = z.object({
     name: z.string(),
@@ -167,8 +167,89 @@ router.post("/students/signin",jsonParser,async(req,res)=>{
 })
 
 
+const create = z.object({
+    classname:z.string(),
+    semister:z.string(),
+    students:z.string(),
+})
+
+router.post("/class/create",jsonParser,authMiddleware,async(req,res) => {
+    
+    const {success} =  create.safeParse(req.body);
 
 
+    if(!success){
+        res.json({
+            message:"Input is not valid"
+        })
+    }
+
+    const present = await Class.findOne({Classname:req.body.classname});
+    
+    if(present){
+        res.json({
+            message:"class already created"
+        })
+    }else{
+
+    const Classes = Class.create({
+    Classname:req.body.classname,
+    Semister:req.body.semister,
+    Studentscount:req.body.students,
+    user_id:req.userId
+    })
+
+    res.json({
+    message:"class created successfully"
+    })
+}
+
+});
+
+
+const check = z.object({
+    timingfrom:z.string(),
+    timingto:z.string(),
+    classname:z.string(),
+    breakfrom:z.string(),
+    breakto:z.string(),
+    date:z.string(),
+})
+
+router.post("/class/schedule",jsonParser,authMiddleware,async(req,res) => {
+    
+    const {success} =  check.safeParse(req.body);
+
+    if(!success){
+        res.json({
+            message:"Input is not valid"
+        })
+    }
+
+    const present = await Lectures.findOne({Classname:req.body.classname});
+    
+    if(present){
+        res.json({
+            message:"class schedule already created"
+        })
+    }else{
+
+    const Classes = Lectures.create({
+    Timingfrom:req.body.timingfrom,
+    Timingto:req.body.timingto,
+    Classname:req.body.classname,
+    Breakfrom:req.body.breakfrom,
+    Breakto:req.body.breakto,
+    Date:req.body.date,
+    user_id:req.userId
+    })
+
+    res.json({
+    message:"class schedule created successfully"
+    })
+}
+
+});
 
 
 router.use((err, req, res, next) => {
