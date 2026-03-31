@@ -67,6 +67,32 @@ router.post("/ato/create",jsonParser,authMiddleware,async(req,res) => {
     }
 })
 
+const docInput = z.object({
+     title: z.string()
+})
+
+router.delete("/ato/delete/:title",jsonParser,authMiddleware,async(req,res) => {
+
+       const paramValidation = docInput.safeParse(req.params);
+
+    if(!paramValidation.success){
+        res.json({
+            message:"Input is invalid"
+        })
+    }
+        
+    const filter = {user_id:req.userId,Title:req.params.title}
+
+    const taskdelete = await Collaboration.deleteMany(filter)
+
+    if (taskdelete){
+    res.json({
+        message:"habit deleted successfully"
+    })
+}
+})
+
+
 
 router.put("/ato/update/:title",jsonParser,authMiddleware,async(req,res) => {
 
