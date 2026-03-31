@@ -92,7 +92,16 @@ router.delete("/ato/delete/:title",jsonParser,authMiddleware,async(req,res) => {
 }
 })
 
+router.get("/ato/read",jsonParser,authMiddleware,async(req,res) => {
 
+    try{
+    const gotit = await Collaboration.find({user_id:req.userId});
+    res.send(gotit);
+    }catch(err){
+        console.log(err);
+        res.status(500).send("error retrieving data");
+    }
+})
 
 router.put("/ato/update/:title",jsonParser,authMiddleware,async(req,res) => {
 
