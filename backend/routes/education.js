@@ -184,7 +184,7 @@ router.post("/class/create",jsonParser,authMiddleware,async(req,res) => {
         })
     }
 
-    const present = await Class.findOne({Classname:req.body.classname});
+    const present = await Class.findOne({Classname:req.body.classname,user_id:req.userId});
     
     if(present){
         res.json({
@@ -205,6 +205,50 @@ router.post("/class/create",jsonParser,authMiddleware,async(req,res) => {
 }
 
 });
+
+
+const docInput = z.object({
+     name: z.string()
+})
+
+router.put("/class/update/:name",jsonParser,authMiddleware,async(req,res) => {
+    
+    const result =  create.safeParse(req.body);
+    const paramValidation = docInput.safeParse(req.params);
+
+    if(!result.success){
+        res.json({
+            message:"Input is not valid"
+        })
+    }
+
+    const present = await Class.findOne({Classname:req.body.classname,user_id:req.userId});
+    
+    if(present){
+        res.json({
+            message:"classname already present"
+        })
+    }else{
+
+        
+    const filter = {user_id:req.userId,Classname:req.params.name}
+    
+    const arr = {
+        $set:{
+    Classname:req.body.classname,
+    Semister:req.body.semister,
+    Studentscount:req.body.students,
+        }
+    }
+
+    const habitupdate = await Class.updateMany(filter,arr)
+
+    res.json({
+        message:"habit updated successfully"
+    })
+}
+});
+
 
 
 const check = z.object({
@@ -250,7 +294,6 @@ router.post("/class/schedule",jsonParser,authMiddleware,async(req,res) => {
 }
 
 });
-
 
 router.use((err, req, res, next) => {
     console.error("Error:", err.message)

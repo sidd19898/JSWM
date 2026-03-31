@@ -33,7 +33,7 @@ const create = z.object({
 
 }).strict();
 
-router.post("/ato",jsonParser,authMiddleware,async(req,res) => {
+router.post("/ato/create",jsonParser,authMiddleware,async(req,res) => {
 
     const result = create.safeParse(req.body);
 
@@ -62,6 +62,46 @@ router.post("/ato",jsonParser,authMiddleware,async(req,res) => {
 
         res.json({
             message:"task assigned successfully"
+        })
+        }
+    }
+})
+
+
+router.put("/ato/update/:title",jsonParser,authMiddleware,async(req,res) => {
+
+    const result = create.safeParse(req.body);
+
+    if(!result.success){
+        res.json({
+            message:"Input is invalid"
+        })
+    }else{
+
+        const present = await Collaboration.findOne({Title:req.body.title,user_id:req.userId,Assignto:req.body.assignto});
+
+        if(present){
+            res.json({
+                message:"already present"
+            })
+        }else{
+
+        const filter = {user_id:req.userId,Title:req.params.title}
+    
+        const collaboration = {
+            $set:{
+            Assignto:req.body.assignto,
+            Title:req.body.title,
+            From:req.body.from,
+            To:req.body.to,
+            Status:req.body.status,
+            }
+        }
+
+        const atoupdate = await Collaboration.updateMany(filter,collaboration)
+
+        res.json({
+            message:"task updated successfully"
         })
         }
     }
