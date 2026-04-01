@@ -249,6 +249,39 @@ router.put("/class/update/:name",jsonParser,authMiddleware,async(req,res) => {
 }
 });
 
+router.delete("/class/delete/:name",jsonParser,authMiddleware,async(req,res) => {
+
+       const paramValidation = docInput.safeParse(req.params);
+
+    if(!paramValidation.success){
+        res.json({
+            message:"Input is invalid"
+        })
+    }
+        
+    const filter = {user_id:req.userId,Classname:req.params.name}
+
+    const taskdelete = await Class.deleteMany(filter)
+
+    if (taskdelete){
+    res.json({
+        message:"class deleted successfully"
+    })
+}
+})
+
+
+router.get("/class/read",jsonParser,authMiddleware,async(req,res) => {
+
+    try{
+    const gotit = await Class.find({user_id:req.userId});
+    res.send(gotit);
+    }catch(err){
+        console.log(err);
+        res.status(500).send("error retrieving data");
+    }
+})
+
 
 
 const check = z.object({
@@ -260,7 +293,7 @@ const check = z.object({
     date:z.string(),
 })
 
-router.post("/class/schedule",jsonParser,authMiddleware,async(req,res) => {
+router.post("/class/schedule/create",jsonParser,authMiddleware,async(req,res) => {
     
     const {success} =  check.safeParse(req.body);
 
@@ -294,6 +327,78 @@ router.post("/class/schedule",jsonParser,authMiddleware,async(req,res) => {
 }
 
 });
+
+router.post("/class/schedule/update/:name",jsonParser,authMiddleware,async(req,res) => {
+    
+    const {success} =  check.safeParse(req.body);
+
+    if(!success){
+        res.json({
+            message:"Input is not valid"
+        })
+    }
+
+    const present = await Lectures.findOne({Classname:req.body.classname,user_id:req.userId});
+    
+    if(present){
+        res.json({
+            message:"class schedule already created"
+        })
+    }else{
+
+    const filter = {user_id:req.userId,Classname:req.params.name}
+    
+    const Classes = {
+        $set:{
+    Timingfrom:req.body.timingfrom,
+    Timingto:req.body.timingto,
+    Classname:req.body.classname,
+    Breakfrom:req.body.breakfrom,
+    Breakto:req.body.breakto,
+    Date:req.body.date,
+    }
+}
+
+const atoupdate = await Lectures.updateMany(filter,Classes)
+
+    res.json({
+    message:"class schedule updated successfully"
+    })
+}
+
+});
+
+router.delete("/class/schedule/delete/:name",jsonParser,authMiddleware,async(req,res) => {
+
+    const paramValidation = docInput.safeParse(req.params);
+
+    if(!paramValidation.success){
+        res.json({
+            message:"Input is invalid"
+        })
+    }
+        
+    const filter = {user_id:req.userId,Classname:req.params.name}
+
+    const taskdelete = await Lectures.deleteMany(filter)
+
+    if (taskdelete){
+    res.json({
+        message:"class schedule deleted successfully"
+    })
+}
+})
+
+router.get("/class/schedule/read",jsonParser,authMiddleware,async(req,res) => {
+
+    try{
+    const gotit = await Lectures.find({user_id:req.userId});
+    res.send(gotit);
+    }catch(err){
+        console.log(err);
+        res.status(500).send("error retrieving data");
+    }
+})
 
 router.use((err, req, res, next) => {
     console.error("Error:", err.message)
