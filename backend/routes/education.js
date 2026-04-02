@@ -4,6 +4,7 @@ const Class = require("../model/jswm/class.js")
 const Teachers = require("../model/jswm/teachers.js")
 const Students = require("../model/jswm/students.js")
 const Lectures = require("../model/jswm/lectures.js")
+const Exam = require("../model/jswm/exam.js")
 const authMiddleware = require("../middleware/authMiddleware.js")
 const connectDB = require("../config/db.js")
 const router = express.Router();
@@ -30,6 +31,7 @@ const Use = z.object({
     password: z.string(),
 })
 
+// UAS for Teachers and students
 
 router.post("/teachers/signup", jsonParser,async(req,res) => {
 
@@ -173,6 +175,9 @@ const create = z.object({
     students:z.string(),
 })
 
+// class 
+
+
 router.post("/class/create",jsonParser,authMiddleware,async(req,res) => {
     
     const {success} =  create.safeParse(req.body);
@@ -282,7 +287,7 @@ router.get("/class/read",jsonParser,authMiddleware,async(req,res) => {
     }
 })
 
-
+// Class schedule
 
 const check = z.object({
     timingfrom:z.string(),
@@ -399,6 +404,52 @@ router.get("/class/schedule/read",jsonParser,authMiddleware,async(req,res) => {
         res.status(500).send("error retrieving data");
     }
 })
+
+//  Exam Timetable
+
+
+const verify = z.object({
+    semister:z.string(),
+    dates:z.string(),
+    exam:z.string(),
+    fromtime:z.string(),
+    totime:z.string(),
+})
+
+router.post("/class/exam/create",jsonParser,authMiddleware,async(req,res) => {
+    
+    const {success} =  verify.safeParse(req.body);
+
+    if(!success){
+        res.json({
+            message:"Input is not valid"
+        })
+    }
+
+    const present = await Exam.findOne({Semister:req.body.semister});
+    
+    if(present){
+        res.json({
+            message:"class schedule already created"
+        })
+    }else{
+
+    const Classes = Exam.create({
+    Semister:req.body.semister,
+    Dates:req.body.dates,
+    Exam:req.body.exam,
+    Fromtime:req.body.fromtime,
+    Breakto:req.body.totime,
+    User_id:req.userId
+    })
+
+    res.json({
+    message:"Exam schedule created successfully"
+    })
+}
+
+});
+
 
 router.use((err, req, res, next) => {
     console.error("Error:", err.message)
