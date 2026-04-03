@@ -488,6 +488,36 @@ router.put("/class/exam/update/:exam",jsonParser,authMiddleware,async(req,res) =
 
 });
 
+router.delete("/class/exam/delete/:name",jsonParser,authMiddleware,async(req,res) => {
+    
+    const {success} =  docInput.safeParse(req.params);
+
+    if(!success){
+        res.json({
+            message:"Input is not valid"
+        })
+    }
+
+    const filter = {User_id:req.userId,Exam:req.params.name}
+
+    const atoupdate = await Exam.deleteMany(filter)
+
+    res.json({
+    message:"Exam schedule deleted successfully"
+    })
+
+});
+
+router.get("/class/exam/read",jsonParser,authMiddleware,async(req,res) => {
+
+    try{
+    const gotit = await Exam.find({User_id:req.userId});
+    res.send(gotit);
+    }catch(err){
+        console.log(err);
+        res.status(500).send("error retrieving data");
+    }
+})
 
 
 router.use((err, req, res, next) => {
