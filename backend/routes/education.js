@@ -333,7 +333,7 @@ router.post("/class/schedule/create",jsonParser,authMiddleware,async(req,res) =>
 
 });
 
-router.post("/class/schedule/update/:name",jsonParser,authMiddleware,async(req,res) => {
+router.put("/class/schedule/update/:name",jsonParser,authMiddleware,async(req,res) => {
     
     const {success} =  check.safeParse(req.body);
 
@@ -449,6 +449,45 @@ router.post("/class/exam/create",jsonParser,authMiddleware,async(req,res) => {
 }
 
 });
+
+router.put("/class/exam/update/:exam",jsonParser,authMiddleware,async(req,res) => {
+    
+    const {success} =  verify.safeParse(req.body);
+
+    if(!success){
+        res.json({
+            message:"Input is not valid"
+        })
+    }
+
+    const present = await Exam.findOne({Semister:req.body.semister,Exam:req.body.exam,User_id:req.userId});
+    
+    if(present){
+        res.json({
+            message:"Exam schedule already created"
+        })
+    }else{
+
+    const filter = {User_id:req.userId,Exam:req.params.exam}
+
+    const Classes = {
+        $set:{
+    Semister:req.body.semister,
+    Dates:req.body.dates,
+    Exam:req.body.exam,
+    Fromtime:req.body.fromtime,
+    Breakto:req.body.totime
+    }}
+
+    const atoupdate = await Exam.updateMany(filter,Classes)
+
+    res.json({
+    message:"Exam schedule update successfully"
+    })
+}
+
+});
+
 
 
 router.use((err, req, res, next) => {
