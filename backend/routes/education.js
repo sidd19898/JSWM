@@ -5,6 +5,7 @@ const Teachers = require("../model/jswm/teachers.js")
 const Students = require("../model/jswm/students.js")
 const Lectures = require("../model/jswm/lectures.js")
 const Exam = require("../model/jswm/exam.js")
+const Holiday = require("../model/jswm/holidays.js")
 const authMiddleware = require("../middleware/authMiddleware.js")
 const connectDB = require("../config/db.js")
 const router = express.Router();
@@ -518,6 +519,47 @@ router.get("/class/exam/read",jsonParser,authMiddleware,async(req,res) => {
         res.status(500).send("error retrieving data");
     }
 })
+
+// holidays 
+
+const ver = z.object({
+    from:z.string(),
+    to:z.string(),
+    reason:z.string(),
+})
+
+router.post("/class/holiday/create",jsonParser,authMiddleware,async(req,res) => {
+    
+    const {success} =  ver.safeParse(req.body);
+
+    if(!success){
+        res.json({
+            message:"Input is not valid"
+        })
+    }
+
+    const present = await Holiday.findOne({From:req.body.from,To:req.body.to,Reason:req.body.reason});
+    
+    if(present){
+        res.json({
+            message:"holiday already created"
+        })
+    }else{
+
+    const holidays = Holiday.create({
+    From:req.body.from,
+    To:req.body.to,
+    Reason:req.body.reason,
+    User_id:req.userId,
+    })
+
+    res.json({
+    message:"Holiday created successfully"
+    })
+}
+
+});
+
 
 
 router.use((err, req, res, next) => {
