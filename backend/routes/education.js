@@ -561,6 +561,42 @@ router.post("/class/holiday/create",jsonParser,authMiddleware,async(req,res) => 
 });
 
 
+router.put("/class/holiday/update/:exam",jsonParser,authMiddleware,async(req,res) => {
+    
+    const {success} =  ver.safeParse(req.body);
+
+    if(!success){
+        res.json({
+            message:"Input is not valid"
+        })
+    }
+
+    const present = await Holiday.findOne({From:req.body.from,To:req.body.to,Reason:req.body.reason});
+    
+    if(present){
+        res.json({
+            message:"Holiday already created"
+        })
+    }else{
+
+    const filter = {User_id:req.userId,Reason:req.params.exam}
+
+    const Classes = {
+        $set:{
+    From:req.body.from,
+    To:req.body.to,
+    Reason:req.body.reason,
+    }}
+
+    const atoupdate = await Holiday.updateMany(filter,Classes)
+
+    res.json({
+    message:"Holiday update successfully"
+    })
+}
+
+});
+
 
 router.use((err, req, res, next) => {
     console.error("Error:", err.message)
