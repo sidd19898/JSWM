@@ -561,11 +561,12 @@ router.post("/class/holiday/create",jsonParser,authMiddleware,async(req,res) => 
 });
 
 
-router.put("/class/holiday/update/:exam",jsonParser,authMiddleware,async(req,res) => {
+router.put("/class/holiday/update/:name",jsonParser,authMiddleware,async(req,res) => {
     
     const {success} =  ver.safeParse(req.body);
+    const {suplex} =  docInput.safeParse(req.params);
 
-    if(!success){
+    if(!success || !suplex){
         res.json({
             message:"Input is not valid"
         })
@@ -579,7 +580,7 @@ router.put("/class/holiday/update/:exam",jsonParser,authMiddleware,async(req,res
         })
     }else{
 
-    const filter = {User_id:req.userId,Reason:req.params.exam}
+    const filter = {User_id:req.userId,Reason:req.params.name}
 
     const Classes = {
         $set:{
@@ -596,6 +597,38 @@ router.put("/class/holiday/update/:exam",jsonParser,authMiddleware,async(req,res
 }
 
 });
+
+
+router.delete("/class/holiday/delete/:name",jsonParser,authMiddleware,async(req,res) => {
+    
+    const {success} =  docInput.safeParse(req.params);
+
+    if(!success){
+        res.json({
+            message:"Input is not valid"
+        })
+    }
+
+    const filter = {User_id:req.userId,Reason:req.params.name}
+
+    const atoupdate = await Holiday.deleteMany(filter)
+
+    res.json({
+    message:"Exam schedule deleted successfully"
+    })
+
+});
+
+router.get("/class/holiday/read",jsonParser,authMiddleware,async(req,res) => {
+
+    try{
+    const gotit = await Holiday.find({User_id:req.userId});
+    res.send(gotit);
+    }catch(err){
+        console.log(err);
+        res.status(500).send("error retrieving data");
+    }
+})
 
 
 router.use((err, req, res, next) => {
