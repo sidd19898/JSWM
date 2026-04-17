@@ -16,7 +16,10 @@ const helmet = require("helmet")
 require("dotenv").config();
 const jwt = require("jsonwebtoken");
 const JWT_SECRET = process.env.JWT_SECRET;
+const upload = require("../middleware/upload.js");
+const File = require("../model/jswm/homework.js");
 connectDB();
+
 
 const limiter = ratelimiter.rateLimit({
     windowMs: 15 * 60 * 1000,
@@ -629,6 +632,31 @@ router.get("/class/holiday/read",jsonParser,authMiddleware,async(req,res) => {
         res.status(500).send("error retrieving data");
     }
 })
+
+// Homework route
+router.post("/upload", upload.single("file"), async (req, res) => {
+  try {
+    if (!req.file) {
+      return res.status(400).json({ message: "No file uploaded" });
+    }
+
+    const file = new File({
+      filename: req.file.originalname,
+      contentType: req.file.mimetype,
+      data: req.file.buffer
+    });
+
+    await file.save();
+
+    res.status(200).json({
+      message: "File uploaded successfully",
+      fileId: file._id
+    });
+
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
 
 
 router.use((err, req, res, next) => {
