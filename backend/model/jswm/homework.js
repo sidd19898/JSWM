@@ -1,7 +1,14 @@
 // models/File.js
 const mongoose = require("mongoose");
+const{Schema, model} = mongoose;
 
-const fileSchema = new mongoose.Schema({
+const fileSchema = new Schema({
+
+  Title:String,
+  Description:String,
+  Lastdate:String,
+  User_id:String,
+
   filename: String,
   contentType: String,
   data: Buffer,
@@ -11,4 +18,5 @@ const fileSchema = new mongoose.Schema({
   }
 });
 
-module.exports = mongoose.model("homework", fileSchema);
+const Homework = model('homework', fileSchema);
+module.exports = Homework;

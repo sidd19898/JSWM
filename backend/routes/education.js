@@ -6,6 +6,7 @@ const Students = require("../model/jswm/students.js")
 const Lectures = require("../model/jswm/lectures.js")
 const Exam = require("../model/jswm/exam.js")
 const Holiday = require("../model/jswm/holidays.js")
+const Homework = require("../model/jswm/homework.js")
 const authMiddleware = require("../middleware/authMiddleware.js")
 const connectDB = require("../config/db.js")
 const router = express.Router();
@@ -633,9 +634,46 @@ router.get("/class/holiday/read",jsonParser,authMiddleware,async(req,res) => {
     }
 })
 
-// Homework route
-router.post("/upload", upload.single("file"), async (req, res) => {
+//homework route
+
+const polo = z.object({
+    title : z.string(),
+    description : z.string(),
+    lastdate : z.string(),
+})
+
+
+router.post("/class/homework/create", upload.single("file"),authMiddleware,jsonParser, async (req, res) => {
   try {
+
+
+    const {success} =  polo.safeParse(req.body);
+
+    if(!success){
+        res.json({
+            message:"Input is not valid"
+        })
+    }
+
+    const present = await Homework.findOne({Title:req.body.title,Description:req.body.description,Lastdate:req.body.lastdate});
+    
+    if(present){
+        res.json({
+            message:"homework already created"
+        })
+    }else{
+
+    const holidays = Homework.create({
+    Title:req.body.title,
+    Description:req.body.description,
+    Lastdate:req.body.lastdate,
+    User_id:req.userId,
+    })
+
+    res.json({
+    message:"Homework created successfully"
+    })
+
     if (!req.file) {
       return res.status(400).json({ message: "No file uploaded" });
     }
@@ -643,7 +681,8 @@ router.post("/upload", upload.single("file"), async (req, res) => {
     const file = new File({
       filename: req.file.originalname,
       contentType: req.file.mimetype,
-      data: req.file.buffer
+      data: req.file.buffer,
+      User_id:req.userId,
     });
 
     await file.save();
@@ -653,7 +692,8 @@ router.post("/upload", upload.single("file"), async (req, res) => {
       fileId: file._id
     });
 
-  } catch (err) {
+  }
+ } catch (err) {
     res.status(500).json({ error: err.message });
   }
 });
