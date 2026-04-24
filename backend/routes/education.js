@@ -19,6 +19,7 @@ const jwt = require("jsonwebtoken");
 const JWT_SECRET = process.env.JWT_SECRET;
 const upload = require("../middleware/upload.js");
 const File = require("../model/jswm/homework.js");
+const Announcement = require("../model/jswm/announcement.js")
 connectDB();
 
 
@@ -635,6 +636,7 @@ router.get("/class/holiday/read",jsonParser,authMiddleware,async(req,res) => {
 })
 
 // Homework route
+
 const lomo = z.object({
     title:z.string(),
     description:z.string(),
@@ -758,6 +760,133 @@ router.get("/class/homework/read/:id", jsonParser,authMiddleware,async (req, res
     res.status(500).json({ error: err.message });
   }
 });
+
+// Announcement Route
+
+
+const zolo = z.object({
+    title:z.string(),
+    description:z.string(),
+    
+})
+
+router.post("/class/announcement/create", upload.single("file"), jsonParser,authMiddleware,async (req, res) => {
+  try {
+
+    const {success} =  zolo.safeParse(req.body);
+
+    if(!success){
+        res.json({
+            message:"Input is not valid"
+        })
+    }
+
+    if (!req.file) {
+      return res.status(400).json({ message: "No file uploaded" });
+    }
+
+    const file = new Announcement({
+      title: req.body.title,
+      description: req.body.description,
+      User_id:req.userId,
+      filename: req.file.originalname,
+      contentType: req.file.mimetype,
+      data: req.file.buffer
+    });
+
+    await file.save();
+
+    res.status(200).json({
+      message: "File uploaded successfully",
+      fileId: file._id
+    });
+
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+router.put("/class/announcement/update/:id", upload.single("file"), jsonParser,authMiddleware,async (req, res) => {
+  try {
+
+    const {success} =  zolo.safeParse(req.body);
+
+    if(!success){
+        res.json({
+            message:"Input is not valid"
+        })
+    }
+    
+    if (!req.file) {
+      return res.status(400).json({ message: "No file uploaded" });
+    }
+
+    const updatedFile = await Announcement.findByIdAndUpdate(
+      req.params.id,
+      {
+        title: req.body.title,
+        description: req.body.description,
+        User_id:req.userId,
+        filename: req.file.originalname,
+        contentType: req.file.mimetype,
+        data: req.file.buffer,
+        uploadedAt: new Date()
+      },
+      { new: true }
+    );
+
+    if (!updatedFile) {
+      return res.status(404).json({ message: "File not found" });
+    }
+
+    res.json({
+      message: "File updated successfully",
+      file: updatedFile
+    });
+
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+
+router.delete("/class/announcement/delete/:id", jsonParser,authMiddleware,async (req, res) => {
+  try {
+    const deletedFile = await Announcement.findByIdAndDelete(req.params.id);
+
+    if (!deletedFile) {
+      return res.status(404).json({ message: "File not found" });
+    }
+
+    res.json({ message: "File deleted successfully" });
+
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+router.get("/class/announcement/read/:id", jsonParser,authMiddleware,async (req, res) => {
+  try {
+    const file = await Announcement.findById(req.params.id);
+
+    if (!file) {
+      return res.status(404).json({ message: "File not found" });
+    }
+
+    // Set correct content type (pdf, image, etc.)
+    res.json({
+  id: file._id,
+  filename: file.filename,
+  contentType: file.contentType,
+  uploadedAt: file.uploadedAt,
+  data: file.data.toString("base64")
+});
+
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 
 router.use((err, req, res, next) => {
     console.error("Error:", err.message)

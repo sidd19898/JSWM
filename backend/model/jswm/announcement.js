@@ -1,10 +1,17 @@
+
 const mongoose = require("mongoose");
-const{Schema, model} = mongoose;
 
-const announcementschema = new Schema({
-    title:String,
-    description:String,
-})
+const fileSchema = new mongoose.Schema({
+  title: String,
+  description: String,
+  user_id:String,
+  filename: String,
+  contentType: String,
+  data: Buffer,
+  uploadedAt: {
+    type: Date,
+    default: Date.now
+  }
+});
 
-const Announcement = model('announcement', announcementschema);
-module.exports = Announcement;
+module.exports = mongoose.model("announcement", fileSchema);
