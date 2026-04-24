@@ -635,13 +635,32 @@ router.get("/class/holiday/read",jsonParser,authMiddleware,async(req,res) => {
 })
 
 // Homework route
-router.post("/upload", upload.single("file"), async (req, res) => {
+const lomo = z.object({
+    title:z.string(),
+    description:z.string(),
+    lastdate:z.string(),
+})
+
+router.post("/class/homework/create", upload.single("file"), jsonParser,authMiddleware,async (req, res) => {
   try {
+
+    const {success} =  lomo.safeParse(req.body);
+
+    if(!success){
+        res.json({
+            message:"Input is not valid"
+        })
+    }
+
     if (!req.file) {
       return res.status(400).json({ message: "No file uploaded" });
     }
 
     const file = new File({
+      title: req.body.title,
+      description: req.body.description,
+      lastdate: req.body.lastdate,
+      User_id:req.userId,
       filename: req.file.originalname,
       contentType: req.file.mimetype,
       data: req.file.buffer
@@ -659,8 +678,17 @@ router.post("/upload", upload.single("file"), async (req, res) => {
   }
 });
 
-router.put("/file/:id", upload.single("file"), async (req, res) => {
+router.put("/class/homework/update/:id", upload.single("file"), jsonParser,authMiddleware,async (req, res) => {
   try {
+
+    const {success} =  lomo.safeParse(req.body);
+
+    if(!success){
+        res.json({
+            message:"Input is not valid"
+        })
+    }
+    
     if (!req.file) {
       return res.status(400).json({ message: "No file uploaded" });
     }
@@ -668,6 +696,10 @@ router.put("/file/:id", upload.single("file"), async (req, res) => {
     const updatedFile = await File.findByIdAndUpdate(
       req.params.id,
       {
+        title: req.body.title,
+        description: req.body.description,
+        lastdate: req.body.lastdate,
+        User_id:req.userId,
         filename: req.file.originalname,
         contentType: req.file.mimetype,
         data: req.file.buffer,
@@ -690,7 +722,7 @@ router.put("/file/:id", upload.single("file"), async (req, res) => {
   }
 });
 
-router.delete("/file/:id", async (req, res) => {
+router.delete("/class/homework/delete/:id", jsonParser,authMiddleware,async (req, res) => {
   try {
     const deletedFile = await File.findByIdAndDelete(req.params.id);
 
@@ -705,7 +737,7 @@ router.delete("/file/:id", async (req, res) => {
   }
 });
 
-router.get("/file/:id", async (req, res) => {
+router.get("/class/homework/read/:id", jsonParser,authMiddleware,async (req, res) => {
   try {
     const file = await File.findById(req.params.id);
 
@@ -717,7 +749,7 @@ router.get("/file/:id", async (req, res) => {
     res.set("Content-Type", file.contentType);
 
     // Send file buffer
-    res.send(file.data);
+    res.send(file);
 
   } catch (err) {
     res.status(500).json({ error: err.message });
