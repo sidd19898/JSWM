@@ -659,6 +659,70 @@ router.post("/upload", upload.single("file"), async (req, res) => {
   }
 });
 
+router.put("/file/:id", upload.single("file"), async (req, res) => {
+  try {
+    if (!req.file) {
+      return res.status(400).json({ message: "No file uploaded" });
+    }
+
+    const updatedFile = await File.findByIdAndUpdate(
+      req.params.id,
+      {
+        filename: req.file.originalname,
+        contentType: req.file.mimetype,
+        data: req.file.buffer,
+        uploadedAt: new Date()
+      },
+      { new: true }
+    );
+
+    if (!updatedFile) {
+      return res.status(404).json({ message: "File not found" });
+    }
+
+    res.json({
+      message: "File updated successfully",
+      file: updatedFile
+    });
+
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+router.delete("/file/:id", async (req, res) => {
+  try {
+    const deletedFile = await File.findByIdAndDelete(req.params.id);
+
+    if (!deletedFile) {
+      return res.status(404).json({ message: "File not found" });
+    }
+
+    res.json({ message: "File deleted successfully" });
+
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+router.get("/file/:id", async (req, res) => {
+  try {
+    const file = await File.findById(req.params.id);
+
+    if (!file) {
+      return res.status(404).json({ message: "File not found" });
+    }
+
+    // Set correct content type (pdf, image, etc.)
+    res.set("Content-Type", file.contentType);
+
+    // Send file buffer
+    res.send(file.data);
+
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
 
 router.use((err, req, res, next) => {
     console.error("Error:", err.message)
