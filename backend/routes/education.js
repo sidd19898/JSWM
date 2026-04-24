@@ -746,10 +746,13 @@ router.get("/class/homework/read/:id", jsonParser,authMiddleware,async (req, res
     }
 
     // Set correct content type (pdf, image, etc.)
-    res.set("Content-Type", file.contentType);
-
-    // Send file buffer
-    res.send(file);
+    res.json({
+  id: file._id,
+  filename: file.filename,
+  contentType: file.contentType,
+  uploadedAt: file.uploadedAt,
+  data: file.data.toString("base64")
+});
 
   } catch (err) {
     res.status(500).json({ error: err.message });
