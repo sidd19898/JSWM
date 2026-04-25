@@ -6,6 +6,7 @@ const Students = require("../model/jswm/students.js")
 const Lectures = require("../model/jswm/lectures.js")
 const Exam = require("../model/jswm/exam.js")
 const Holiday = require("../model/jswm/holidays.js")
+const Requests = require("../model/jswm/requests.js")
 const Homework = require("../model/jswm/homework.js")
 const authMiddleware = require("../middleware/authMiddleware.js")
 const connectDB = require("../config/db.js")
@@ -889,6 +890,50 @@ router.get("/class/announcement/read/:id", jsonParser,authMiddleware,async (req,
   }
 });
 
+router.get("/student/req",jsonParser,authMiddleware,async(req,res)=>{
+    try{
+        const teacher = await Requests.find({Teacher_id:req.userId})
+        res.send(teacher);
+    
+    }catch(err){
+        res.status(500).json({error:err.message});
+    }
+})
+
+const pinto = z.object({
+    status:z.boolean(),
+})
+
+router.put("/student/req/:id",jsonParser,authMiddleware,async(req,res) => {
+    try{
+        const {success} = pinto.safeParse(req.body);
+
+    if(!success){
+        res.json({
+            message:"Input is not valid"
+        })
+    }else{
+    const filter = {User_id:req.params.id}
+    
+    const Classes = {
+        $set:{
+    Status:req.body.status,
+    }
+}
+
+const atoupdate = await Requests.updateMany(filter,Classes)
+
+    res.json({
+    message:"request accepted"
+    })
+    }
+   
+
+    }catch(err){
+        res.status(500).json({error:err.message});
+    }
+})
+
                                                                               // Student routes 
 
 router.get("/teacher/search",jsonParser,authMiddleware,async(req,res)=>{
@@ -908,6 +953,61 @@ router.get("/teacher/search",jsonParser,authMiddleware,async(req,res)=>{
 res.status(500).json({error:err.message});
     }
 })
+
+const dino = z.object({
+    name:z.string(),
+    rollno:z.string(),
+    teacher_id:z.string(),
+})
+
+router.post("/teacher/req",jsonParser,authMiddleware,async(req,res)=>{
+    try{
+    const {success} =  dino.safeParse(req.body);
+
+    if(!success){
+        res.json({
+            message:"Input is not valid"
+        })
+    }
+
+    const present = await Requests.findOne({Name:req.body.name,Rollno:req.body.rollno});
+    
+    if(present){
+        res.json({
+            message:"request already created"
+        })
+    }else{
+
+    const request = Requests.create({
+    Name:req.body.name,
+    Rollno:req.body.rollno,
+    Status:false,
+    Teacher_id:req.body.teacher_id,
+    User_id:req.userId
+    })
+
+    res.json({
+    message:"request created successfully"
+    })
+
+    }
+
+    }catch(err){
+ res.status(500).json({ error: err.message });
+    }
+})
+
+router.get("/teacher/req",jsonParser,authMiddleware,async(req,res)=>{
+    try{
+        const teacher = await Requests.find({User_id:req.userId})
+        res.send(teacher);
+
+    }catch(err){
+        res.status(500).json({error:err.message});
+    }
+})
+
+
 
 
 
