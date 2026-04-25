@@ -181,8 +181,10 @@ const create = z.object({
     students:z.string(),
 })
 
-// class 
 
+                                                                                         // Teachers routes 
+
+// class 
 
 router.post("/class/create",jsonParser,authMiddleware,async(req,res) => {
     
@@ -886,6 +888,27 @@ router.get("/class/announcement/read/:id", jsonParser,authMiddleware,async (req,
     res.status(500).json({ error: err.message });
   }
 });
+
+                                                                              // Student routes 
+
+router.get("/teacher/search",jsonParser,authMiddleware,async(req,res)=>{
+    try{
+
+        const q = req.query.q;
+
+        const teacher = await Teachers.find({
+            Name:{
+                $regex:q,
+                $options:"i"
+            }
+        });
+
+        res.json(teacher);
+    }catch(err){
+res.status(500).json({error:err.message});
+    }
+})
+
 
 
 router.use((err, req, res, next) => {
