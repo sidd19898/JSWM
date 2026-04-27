@@ -1007,10 +1007,6 @@ router.get("/teacher/req",jsonParser,authMiddleware,async(req,res)=>{
     }
 })
 
-
-
-
-
 router.use((err, req, res, next) => {
     console.error("Error:", err.message)
 
