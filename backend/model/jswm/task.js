@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const { string } = require("zod");
 const{Schema, model} = mongoose;
 
 const taskSchema = new Schema({

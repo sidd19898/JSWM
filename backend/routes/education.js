@@ -20,7 +20,9 @@ const jwt = require("jsonwebtoken");
 const JWT_SECRET = process.env.JWT_SECRET;
 const upload = require("../middleware/upload.js");
 const File = require("../model/jswm/homework.js");
-const Announcement = require("../model/jswm/announcement.js")
+const Announcement = require("../model/jswm/announcement.js");
+const studentCheck = require("../middleware/studentcheck.js");
+const Submission = require("../model/jswm/submissions.js")
 connectDB();
 
 
@@ -1005,6 +1007,265 @@ router.get("/teacher/req",jsonParser,authMiddleware,async(req,res)=>{
     }catch(err){
         res.status(500).json({error:err.message});
     }
+})
+
+router.get("/class",jsonParser,authMiddleware,studentCheck,async(req,res)=>{
+    try{
+    const classe = await Class.find({user_id:req.teacherId})
+    res.send(classe);
+    }catch(err){
+        res.status(500).json({error:err.message});
+    }
+})
+
+router.get("/class/search",jsonParser,authMiddleware,studentCheck,async(req,res)=>{
+    try{
+
+        const q = req.query.q;
+
+        const teacher = await Class.find({
+            Classname:{
+                $regex:q,
+                $options:"i"
+            }
+        });
+
+        res.json(teacher);
+    }catch(err){
+res.status(500).json({error:err.message});
+    }
+})
+
+
+router.get("/exam",jsonParser,authMiddleware,studentCheck,async(req,res)=>{
+    try{
+    const classe = await Exam.find({User_id:req.teacherId})
+    res.send(classe);
+    }catch(err){
+        res.status(500).json({error:err.message});
+    }
+})
+
+router.get("/class/exam",jsonParser,authMiddleware,studentCheck,async(req,res)=>{
+    try{
+
+        const q = req.query.q;
+
+        const teacher = await Exam.find({
+            Classname:{
+                $regex:q,
+                $options:"i"
+            }
+        });
+
+        res.json(teacher);
+    }catch(err){
+res.status(500).json({error:err.message});
+    }
+})
+
+router.get("/holidays",jsonParser,authMiddleware,studentCheck,async(req,res)=>{
+    try{
+    const classe = await Holiday.find({User_id:req.teacherId})
+    res.send(classe);
+    }catch(err){
+        res.status(500).json({error:err.message});
+    }
+})
+
+router.get("/class/holidays",jsonParser,authMiddleware,studentCheck,async(req,res)=>{
+    try{
+
+        const q = req.query.q;
+
+        const teacher = await Holiday.find({
+            Classname:{
+                $regex:q,
+                $options:"i"
+            }
+        });
+
+        res.json(teacher);
+    }catch(err){
+res.status(500).json({error:err.message});
+    }
+})
+
+
+router.get("/homework",jsonParser,authMiddleware,studentCheck,async(req,res)=>{
+    try{
+    const classe = await Homework.find({User_id:req.teacherId})
+    res.send(classe);
+    }catch(err){
+        res.status(500).json({error:err.message});
+    }
+})
+
+router.get("/class/homework",jsonParser,authMiddleware,studentCheck,async(req,res)=>{
+    try{
+
+        const q = req.query.q;
+
+        const teacher = await Homework.find({
+            Classname:{
+                $regex:q,
+                $options:"i"
+            }
+        });
+
+        res.json(teacher);
+    }catch(err){
+res.status(500).json({error:err.message});
+    }
+})
+
+const nino = z.object({
+    from:z.string(),
+    rollno:z.string(),
+    description:z.string(),
+    dos:z.string(),
+})
+
+router.post("/homework",upload.single("file"),jsonParser,authMiddleware,studentCheck,async(req,res)=>{
+    try{
+        const {success} =  nino.safeParse(req.body);
+
+        if(!success){
+        res.json({
+            message:"Input is not valid"
+        })
+    }
+
+    if (!req.file) {
+      return res.status(400).json({ message: "No file uploaded" });
+    }
+
+    const file = new Submission({
+        From:req.body.from,
+        Rollno:req.body.rollno,
+        Description:req.body.description,
+        Dos:req.body.dos,
+        User_id:req.userId,
+        Teacher_id:req.teacherId,
+        filename: req.file.originalname,
+        contentType: req.file.mimetype,
+        data: req.file.buffer,
+        uploadedAt: new Date()
+    })
+
+    await file.save();
+
+    }catch(err){
+        res.status(500).json({error:err.message});
+    }
+})
+
+router.put("/homework/:id",upload.single("file"),jsonParser,authMiddleware,studentCheck,async(req,res)=>{
+    try{
+const {success} =  nino.safeParse(req.body);
+
+        if(!success){
+        res.json({
+            message:"Input is not valid"
+        })
+    }
+
+    if (!req.file) {
+      return res.status(400).json({ message: "No file uploaded" });
+    }
+
+    const updatedFile = await Submission.findByIdAndUpdate(
+      req.params.id,
+      {
+        From:req.body.from,
+        Rollno:req.body.rollno,
+        Description:req.body.description,
+        Dos:req.body.dos,
+        User_id:req.userId,
+        Teacher_id:req.teacherId,
+        filename: req.file.originalname,
+        contentType: req.file.mimetype,
+        data: req.file.buffer,
+        uploadedAt: new Date()
+      },{new:true}
+)
+
+ if (!updatedFile) {
+      return res.status(404).json({ message: "File not found" });
+    }
+
+    res.json({
+      message: "File updated successfully",
+      file: updatedFile
+    });
+
+    } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+})
+
+router.get("/announcement",jsonParser,authMiddleware,studentCheck,async(req,res)=>{
+    try{
+    const classe = await Announcement.find({user_id:req.teacherId})
+    res.send(classe);
+    }catch(err){
+        res.status(500).json({error:err.message});
+    }
+})
+
+router.get("/class/announcement",jsonParser,authMiddleware,studentCheck,async(req,res)=>{
+    try{
+
+        const q = req.query.q;
+
+        const teacher = await Announcement.find({
+            Classname:{
+                $regex:q,
+                $options:"i"
+            }
+        });
+
+        res.json(teacher);
+    }catch(err){
+res.status(500).json({error:err.message});
+    }
+})
+
+router.delete("/homework/:id",jsonParser,authMiddleware,studentCheck,async(req,res)=>{
+try {
+    const deletedFile = await Submission.findByIdAndDelete(req.params.id);
+
+    if (!deletedFile) {
+      return res.status(404).json({ message: "File not found" });
+    }
+
+    res.json({ message: "File deleted successfully" });
+
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+})
+
+router.get("/homework/:id",jsonParser,authMiddleware,studentCheck,async(req,res)=>{
+    try {
+    const file = await Submission.findById(req.params.id);
+
+    if (!file) {
+      return res.status(404).json({ message: "File not found" });
+    }
+
+    // Set correct content type (pdf, image, etc.)
+    res.json({
+  id: file._id,
+  filename: file.filename,
+  contentType: file.contentType,
+  uploadedAt: file.uploadedAt,
+  data: file.data.toString("base64")
+});
+
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
 })
 
 router.use((err, req, res, next) => {
