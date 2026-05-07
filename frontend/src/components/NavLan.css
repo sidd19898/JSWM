@@ -1,0 +1,30 @@
+.Nav{
+ background-color: #191645;
+ color: white;
+ display: flex;
+ padding: 10px;
+ justify-content: space-between;
+ padding-left: 25px;
+ padding-right: 25px;
+}
+
+.feat{
+    display: flex;
+    gap: 50px;
+}
+
+.title{
+    font-size: x-large;
+}
+
+.polo{
+    all: unset;
+  cursor: pointer;
+  background-color: #43C6AC;
+  color: #191645;
+  border-radius: 2px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
