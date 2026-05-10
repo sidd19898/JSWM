@@ -1,0 +1,51 @@
+.ti{
+    text-align: center;
+}
+
+.tino{
+    font-family: "SN Pro", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-size: 120px;
+  font-style: normal;
+  color: white;
+  text-shadow: 0px 22px 15px rgba(0, 0, 0, 0.56);
+}
+
+.jet{
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  gap: 80px;
+  font-size: 40px;
+  border-radius: 4px;
+}
+
+@media (min-width:1280px) {
+  .tino{
+    font-size: 80px;
+  }
+  .jet{
+    font-size: 30px;
+  }
+}
+
+@media (min-width:1024px) {
+  .tino{
+    font-size: 70px;
+  }
+  .jet{
+    font-size: 25px;
+    margin-top: 40px;
+  }
+}
+
+@media (min-width:853px){
+  .tino{
+    font-size: 70px;
+  }
+  .jet{
+    font-size: 25px;
+    margin: 40px;
+  }
+}
