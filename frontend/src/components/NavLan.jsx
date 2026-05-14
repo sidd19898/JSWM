@@ -10,6 +10,10 @@ export function Nav({children1,children2,children3,children4,children5}){
             <div>{children4}</div>
             <div><button className="polo">{children5}</button></div>
             </div>
+            <div className="hamburgur">
+                <button className="bu">hi</button>
+            </div>
         </div>
+
     )
 }

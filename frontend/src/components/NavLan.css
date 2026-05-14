@@ -1,24 +1,29 @@
 .Nav{
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  z-index: 100;
  background-color: #191645;
  color: white;
  display: flex;
- padding: 10px;
  justify-content: space-between;
- padding-left: 25px;
- padding-right: 25px;
- margin-bottom: 130px;
+ padding: 0.5vmax;
+ padding-left: 2vmax;
+ padding-right: 2vmax;
 }
 
 .feat{
     display: flex;
     align-items: center;
-    gap: 50px;
-    font-size: large;
+    gap: 2vmax;
+    font-size: 1.5vmax;
 }
 
 .title{
-    font-size: xx-large;
+    font-size: 2vmax;
 }
+
+
 
 .polo{
     all: unset;
@@ -26,10 +31,10 @@
   background-color: #43C6AC;
   color: #191645;
   border-radius: 5px;
-  padding-left: 15px;
-  padding-right: 15px;
   padding-top: 2px;
   padding-bottom: 2px;
+  padding-right: 15px;
+  padding-left: 15px;
   text-shadow: 0px 1px 8px rgba(255, 255, 255, 0.56);
 box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
@@ -40,8 +45,17 @@ box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30p
   border: solid;
 }
 
-@media (min-width:1024px) {
-  .Nav{
-    margin-bottom: 60px;
+.hamburgur{
+  display: none;
+}
+
+@media (max-width:353px){
+  .feat{
+    display: none;
+  }
+  .hamburgur{
+display: block;
   }
 }
+
+
