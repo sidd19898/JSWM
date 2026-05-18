@@ -1,0 +1,40 @@
+.tillu{
+    text-align: center;
+    font-size: 5vmax;
+    color: white;
+}
+
+.cards{
+    margin-top: 3vmax;
+    display: flex;
+    gap: 3vmax;
+    margin-bottom: 12vmax;
+}
+
+.suii{
+    
+    padding: 2vmax;
+    color: white;
+    width: 24vmax;
+    height: 22vmax;
+  backdrop-filter: blur(15px);     
+  -webkit-backdrop-filter: blur(15px); 
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+   background:linear-gradient(#9797bd, #191645) /* overlay */; /* base color */
+border-radius: 10px;
+font-size: 2vmax;
+}
+
+.tt{
+    margin-bottom: 1vmax;
+    text-align: center;
+    font-size: 3vmax;
+}
+
+@media(max-width:842px){
+    .cards{
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+    }
+}
