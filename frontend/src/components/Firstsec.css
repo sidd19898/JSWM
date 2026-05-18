@@ -1,0 +1,14 @@
+.ti{
+    font-size: 8vmax;
+    text-align: center;
+    color: white;
+}
+
+.ti2{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 8vmax;
+    gap: 2vmax;
+    margin-top: 2vmax;
+    font-size: 2vmax;
+}

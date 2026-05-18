@@ -1,10 +1,10 @@
 import "../components/Section.css"
-
+import { Firstsec } from "./Firstsec"
 export function Section(){
     return(
 <div className="container">        
 <div className="section">
-Hi there
+<Firstsec></Firstsec>
 </div>
 <div className="section">
 Hi there

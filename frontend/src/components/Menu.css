@@ -1,0 +1,12 @@
+.pottry{
+    position: absolute;
+    right: 0;
+    background-color: #191645;
+}
+
+.lop{
+    border: 5px solid white;
+    text-align: center;
+    padding: 1vmax;
+    width: 12vmax;
+}

@@ -21,6 +21,8 @@
 
 .title{
     font-size: 2vmax;
+    display: flex;
+    align-items: center;
 }
 
 
@@ -30,7 +32,6 @@
   cursor: pointer;
   background-color: #43C6AC;
   color: #191645;
-  border-radius: 5px;
   padding-top: 2px;
   padding-bottom: 2px;
   padding-right: 15px;
@@ -49,13 +50,32 @@ box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30p
   display: none;
 }
 
-@media (max-width:353px){
+@media (max-width:395px){
   .feat{
     display: none;
   }
   .hamburgur{
 display: block;
+margin-right: 5vmax;
   }
+}
+
+.bui{
+    all: unset;
+  cursor: pointer;
+  position: fixed;
+  }
+
+  .bu{
+ all: unset;
+  cursor: pointer;
+  }
+
+.sol{
+    all: unset;
+  cursor: pointer;
+  align-items: center;
+  position: absolute;
 }
 
 
