@@ -1,6 +1,8 @@
 import "../components/Section.css"
 import { Firstsec } from "./Firstsec"
+import { Fourthsec } from "./Fourthsec"
 import { Secondsec } from "./Secondsec"
+import { Thirdsec } from "./Thirdsec"
 export function Section(){
     return(
 <div className="container">        
@@ -11,10 +13,10 @@ export function Section(){
 <Secondsec></Secondsec>
 </div>
 <div className="section">
-Hi there
+<Thirdsec></Thirdsec>
 </div>
 <div className="section">
-Hi there
+<Fourthsec></Fourthsec>
 </div>
 </div>
     )
