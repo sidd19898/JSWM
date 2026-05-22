@@ -1,0 +1,31 @@
+.card{
+display: flex;
+justify-content: center;
+align-items: center;
+height: 100vh;
+background-color: #191645;
+}
+
+.lopo{
+    background-color: white;
+    width: 20vmax;
+    min-height: fit-content;
+    font-size: 1.2vmax;
+    padding-bottom: 1vmax;
+}
+
+.ponf{
+display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 0.5vmax;
+}
+
+.pffj{
+    color: #191645;
+    text-align: center;
+    font-size: 2vmax;
+    margin-top:1vmax;
+    margin-bottom: 0.5vmax;
+}

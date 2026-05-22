@@ -2,15 +2,46 @@ import "../components/NavLan.css"
 import { useState,useEffect }  from 'react';
 import { Menu } from "./Menu.jsx";
 
+
 export function Nav({children1,children2,children3,children4,children5}){
     const [modal,setModal] = useState(false)
+    const [section, setSection] = useState("");
+
+    useEffect(() => {
+  if (section === "features") {
+    document.getElementById("features")
+      ?.scrollIntoView({ behavior: "smooth" });
+  }
+}, [section]);
+
+useEffect(() => {
+  if (section === "howitworks") {
+    document.getElementById("howitworks")
+      ?.scrollIntoView({ behavior: "smooth" });
+  }
+}, [section]);
+
+useEffect(() => {
+  if (section === "about") {
+    document.getElementById("about")
+      ?.scrollIntoView({ behavior: "smooth" });
+  }
+}, [section]);
+
+useEffect(() => {
+  if (section === "jswm") {
+    document.getElementById("jswm")
+      ?.scrollIntoView({ behavior: "smooth" });
+  }
+}, [section]);
+
     return(
         <div className="Nav">
-            <div className="title">{children1}</div>
+            <div className="title"><button className="bu" onClick={() => setSection("jswm")}>{children1}</button></div>
             <div className="feat">
-            <div><button className="bu">{children2}</button></div>
-            <div><button className="bu">{children3}</button></div>
-            <div><button className="bu">{children4}</button></div>
+            <div><button className="bu" onClick={() => setSection("features")}>{children2}</button></div>
+            <div><button className="bu" onClick={() => setSection("howitworks")}>{children3}</button></div>
+            <div><button className="bu" onClick={() => setSection("about")}>{children4}</button></div>
             <div><button className="bu">{children5}</button></div>
             </div>
             <div className="hamburgur">
