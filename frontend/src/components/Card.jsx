@@ -4,18 +4,29 @@ import "../components/NavLan.css"
 export function Card({children1,children2,children3,children4,children5,children6}){
     return(
         <div className="card">
-            <div className="lopo">
-        <div className="ponf">
-        <div className="pffj">{children1}</div>
+            <div className="realcard">
+            <div className="cent">{children1}</div>
+            
+            <div className="gops">
+
+            <div className="start">
+<div>{children2}</div>
+<div>{children3}</div>
+<div>{children4}</div>
+<div>{children5}</div>
+            </div>
+
+            <div className="end">
+<div>: <input></input></div>
+<div>: <input></input></div>
+<div>: <input></input></div>
+<div>: <input></input></div>
+            </div>
+</div>
+<div className="kod"><button className="pintos">{children6}</button></div>
+</div>
+
+        </div>
         
-        <div>{children2}<input></input></div>
-        <div>{children3}<input></input></div>
-        <div>{children4}<input></input></div>
-        <div>{children5}<input></input></div>
-        </div>
-        <div><button className="polo"> {children6} </button></div>
-        </div>
-        
-        </div>
     )
 }

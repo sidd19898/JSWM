@@ -4,28 +4,71 @@ justify-content: center;
 align-items: center;
 height: 100vh;
 background-color: #191645;
+flex-direction: column;
 }
 
-.lopo{
-    background-color: white;
-    width: 20vmax;
-    min-height: fit-content;
-    font-size: 1.2vmax;
-    padding-bottom: 1vmax;
-}
-
-.ponf{
-display: flex;
-    justify-content: center;
-    align-items: center;
+.start{
+    display: flex;
     flex-direction: column;
-    gap: 0.5vmax;
+    font-size: 2vmax;
+    margin-right: 1vmax;
+    gap: 0.2vmax;
 }
 
-.pffj{
-    color: #191645;
-    text-align: center;
+.end{
+    display: flex;
+    flex-direction: column;
     font-size: 2vmax;
-    margin-top:1vmax;
-    margin-bottom: 0.5vmax;
+}
+
+input{
+height: 1.6vmax; 
+width: 7vmax; 
+border: #191645 solid 1px;  
+}
+
+.gops{
+    display: flex;
+}
+
+.cent{
+    text-align: center;
+    font-size: 4vmin;
+    margin-bottom: 0.2vmax;
+}
+
+button{
+    all: unset;
+}
+
+.kod{
+display: flex;
+justify-content: flex-end;
+padding-top: 1vmax;
+}
+
+.pintos{
+    cursor: pointer;
+    font-size: 1.2vmax;
+    background-color: #43C6AC;
+    color: #191645;
+    padding-top: 0.1vmax;
+    padding-bottom: 0.1vmax;
+    padding-left: 0.4vmax;
+    padding-right: 0.4vmax;
+    border-radius: 2vmax;
+    border: #191645 solid 1px;
+}
+
+.pintos:hover{
+
+border: #191645 solid 2px;
+}
+.realcard{
+    background-color: white;
+    color: #191645;
+    padding: 1vmax;
+    width: fit-content;
+    height: fit-content;
+    border-radius: 2vmax;
 }
