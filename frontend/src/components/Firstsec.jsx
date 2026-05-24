@@ -8,7 +8,7 @@ export function Firstsec(){
 <div>
     <div className="ti">Your Ulitimate <br></br>Buddy For Staying <br></br>Consistent</div>
     <div className="ti2"><button className="polo" onClick={() => navigate("/signup")}>Sign up</button>
-    <button className="polo">Login</button></div>
+    <button className="polo" onClick={() => navigate("/login")}>Login</button></div>
 </div>
     )
 }

@@ -10,31 +10,48 @@ flex-direction: column;
 .start{
     display: flex;
     flex-direction: column;
-    font-size: 2vmax;
+    font-size: 6.5vmin;
     margin-right: 1vmax;
     gap: 0.2vmax;
 }
 
 .end{
     display: flex;
-    flex-direction: column;
-    font-size: 2vmax;
+    font-size: 6vmin;
 }
 
 input{
-height: 1.6vmax; 
-width: 7vmax; 
+height: 5vmin; 
+width: 20vmin; 
 border: #191645 solid 1px;  
+font-size: 4vmin;
 }
 
+.lods{
+    display: flex;
+    flex-direction: column;
+gap: 1vmin;
+}
+
+@media (max-width: 640px) {
+    .lods{
+        gap: 0.9vmin;
+    }
+}
 .gops{
     display: flex;
 }
 
 .cent{
     text-align: center;
-    font-size: 4vmin;
-    margin-bottom: 0.2vmax;
+    font-size: 8vmin;
+    margin-bottom: 0.5vmin;
+}
+
+.sopari{
+margin-top: 0.4vmin;
+margin-bottom: 1vmin;
+margin-right: 1.5vmin;
 }
 
 button{
@@ -49,7 +66,7 @@ padding-top: 1vmax;
 
 .pintos{
     cursor: pointer;
-    font-size: 1.2vmax;
+    font-size: 4vmin;
     background-color: #43C6AC;
     color: #191645;
     padding-top: 0.1vmax;
@@ -61,9 +78,9 @@ padding-top: 1vmax;
 }
 
 .pintos:hover{
-
 border: #191645 solid 2px;
 }
+
 .realcard{
     background-color: white;
     color: #191645;
@@ -71,4 +88,8 @@ border: #191645 solid 2px;
     width: fit-content;
     height: fit-content;
     border-radius: 2vmax;
+}
+
+input:hover{
+border: #191645 solid 2px
 }

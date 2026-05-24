@@ -1,5 +1,4 @@
 import { Card } from "../components/Card.jsx"
-import "../pages/Signup.css"
 
 export default function Signup(){
 return(
