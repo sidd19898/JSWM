@@ -1,7 +1,11 @@
 require("dotenv").config();
 const express = require('express')
 const app = express()
+const cors = require('cors')
+app.use(cors());
+app.use(express.json());
 const port = process.env.PORT;
+
 
 const user = require("./routes/user.js");
 const task = require("./routes/task.js");
@@ -14,6 +18,7 @@ app.use("/jswm/task",task);
 app.use("/jswm/habit",habit);
 app.use("/jswm/collaboration",collaboration);
 app.use("/jswm/education",education)
+
 
 app.get('/', (req, res) => {
   res.send('Hello World! siddhant')

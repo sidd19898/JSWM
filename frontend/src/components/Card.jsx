@@ -3,7 +3,10 @@ import "../components/NavLan.css"
 
 
 
-export function Card({children1,children2,children3,children4,children5,children6}){
+export function Card({children1,children2,children3,children4,children5,children6,onClick,setFirstName,
+  setLastName,
+  setEmail,
+  setPassword}){
     return(
         <div className="card">
             <div className="realcard">
@@ -26,17 +29,40 @@ export function Card({children1,children2,children3,children4,children5,children
 <div className="sopari">:</div>
 </div>
 <div className="lods">
-<div><input></input></div>
-<div><input></input></div>
-<div><input></input></div>
-<div><input></input></div>
+<div>
+    <input 
+            type="text"
+            placeholder="Firstname"
+            onChange={(e)=>setFirstName(e.target.value)}>
+    </input>
+</div>
+<div>
+    <input   
+            type="text"
+            placeholder="Lastname"
+            onChange={(e)=>setLastName(e.target.value)}>
+  </input>
+  </div>
+<div>
+    <input 
+            type="email"
+            placeholder="Email"
+            onChange={(e)=>setEmail(e.target.value)}>
+    </input>
+</div>
+<div>
+    <input
+           type="password"
+           placeholder="Password"
+           onChange={(e)=>setPassword(e.target.value)}>
+    </input>
+</div>
 </div>
             </div>
 </div>
-<div className="kod"><button className="pintos">{children6}</button></div>
+<div className="kod"><button onClick={onClick}className="pintos">{children6}</button></div>
 </div>
-
-        </div>
+</div>
         
     )
 }

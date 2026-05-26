@@ -25,12 +25,12 @@ const Use = z.object({
 
 
 router.post("/signup", jsonParser,async(req,res)=>{
-
+console.log(req.body.firstname)
  
   
     const {success} = Use.safeParse(req.body);
     if (!success){
-        res.json({
+        return res.json({
             message:"input is invalid"
         })
     }
@@ -38,7 +38,7 @@ router.post("/signup", jsonParser,async(req,res)=>{
     const present = await user.findOne({email:req.body.email})
 
     if(present){
-        res.json({
+        return res.json({
             message:"email already exists"
         })
     }
