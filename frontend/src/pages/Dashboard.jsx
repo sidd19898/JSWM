@@ -1,0 +1,7 @@
+export default function Dashboard(){
+    return(
+        <div>
+            welcome to dashboard
+        </div>
+    )
+}

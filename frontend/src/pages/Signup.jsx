@@ -11,8 +11,17 @@ export default function Signup(){
   const[password,setPassword] = useState("");
   const navigate = useNavigate();
 
-  function handleSignup(){
-signup(firstName,lastName,email,password)
+  async function handleSignup (){
+const response = await signup(
+      firstName,
+      lastName,
+      email,
+      password
+   )
+
+      if(response.status === 200){
+      navigate("/login")
+   }
   }
 
 return(
@@ -28,6 +37,7 @@ return(
         setEmail={setEmail}
         setPassword={setPassword}
         onClick={handleSignup}>
+
         </Card>
     </div>
 )
