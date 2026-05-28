@@ -6,6 +6,7 @@ const userSchema = new Schema({
     lastname:String,
     email:String,
     password:String,
+    
 });
 
 const user = model('user', userSchema);

@@ -17,15 +17,21 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 
 const Use = z.object({
-    firstname: z.string(),
-    lastname: z.string(),
+    firstname: z.string()
+    .min(2)
+    .max(30)
+    .regex(/^[a-zA-Z\s]+$/, "Only alphabets allowed"),
+    lastname: z.string()
+    .min(2)
+    .max(30)
+    .regex(/^[a-zA-Z\s]+$/, "Only alphabets allowed"),
     email: z.string().email(),
     password: z.string(),
 })
 
 
 router.post("/signup", jsonParser,async(req,res)=>{
-console.log(req.body.firstname)
+
  
   
     const {success} = Use.safeParse(req.body);
@@ -34,7 +40,7 @@ console.log(req.body.firstname)
             message:"input is invalid"
         })
     }
-    
+    console.log(req.body.firstname)
     const present = await user.findOne({email:req.body.email})
 
     if(present){
@@ -103,5 +109,23 @@ router.get("/", (req,res)=>{
     res.send("homepage")
 })
 
+router.use((err, req, res, next) => {
+    console.error("Error:", err.message)
+
+    res.setHeader(
+    "Content-Security-Policy",
+    "default-src 'self'; script-src 'self'"
+    );
+
+    if (err instanceof SyntaxError && err.status === 400 && 'body' in err) {
+        return res.status(400).json({
+            message: "Invalid JSON format"
+        })
+    }
+
+    res.status(500).json({
+        message: "Internal server error"
+    })
+})
 
 module.exports = router;
