@@ -1,7 +1,6 @@
 const express = require("express");
 const z = require("zod");
 const Task = require("../model/jswm/task.js");
-const connectDB = require("../config/db.js")
 const authMiddleware = require("../middleware/authMiddleware.js")
 const router = express.Router();
 const bodyParser = require("body-parser");
@@ -12,7 +11,6 @@ require("dotenv").config();
 const jwt = require("jsonwebtoken");
 const JWT_SECRET = process.env.JWT_SECRET;
 const mongoose = require("mongoose");
-connectDB();
 
 const limiter = ratelimiter.rateLimit({
     windowMs: 15 * 60 * 1000,

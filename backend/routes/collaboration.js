@@ -1,7 +1,6 @@
 const express = require("express");
 const z = require("zod");
 const Collaboration = require("../model/jswm/Collaboration.js")
-const connectDB = require("../config/db.js")
 const authMiddleware = require("../middleware/authMiddleware.js")
 const router = express.Router();
 const bodyParser = require("body-parser");
@@ -9,7 +8,6 @@ const jsonParser = bodyParser.json()
 const ratelimiter = require("express-rate-limit")
 const helmet = require("helmet")
 const mongoose = require("mongoose");
-connectDB();
 
 const limiter = ratelimiter.rateLimit({
     windowMs: 15 * 60 * 1000,

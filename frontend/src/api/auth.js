@@ -1,4 +1,4 @@
-import API from "./axios"
+import API from "./axios.js"
 
 export const signup = async (first,last,ema,pass) => {
     const response = await API.post("/user/signup",{
@@ -11,5 +11,4 @@ export const signup = async (first,last,ema,pass) => {
     localStorage.setItem("token",response.data.Token)
 alert(response.data.message)
     return response;
- 
 }

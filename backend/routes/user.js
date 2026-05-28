@@ -1,14 +1,12 @@
 const express = require("express");
 const z = require("zod");
 const user = require('../model/jswm/user.js');
-const connectDB = require("../config/db.js");
 require("dotenv").config();
 const JWT_SECRET = process.env.JWT_SECRET
 const bodyParser = require("body-parser");
 const jwt = require("jsonwebtoken");
 const router = express.Router()
 var jsonParser = bodyParser.json()
-connectDB();
 
 
 // create application/x-www-form-urlencoded parser

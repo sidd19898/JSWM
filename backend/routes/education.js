@@ -9,7 +9,6 @@ const Holiday = require("../model/jswm/holidays.js")
 const Requests = require("../model/jswm/requests.js")
 const Homework = require("../model/jswm/homework.js")
 const authMiddleware = require("../middleware/authMiddleware.js")
-const connectDB = require("../config/db.js")
 const router = express.Router();
 const bodyParser = require("body-parser");
 const jsonParser = bodyParser.json()
@@ -23,7 +22,6 @@ const File = require("../model/jswm/homework.js");
 const Announcement = require("../model/jswm/announcement.js");
 const studentCheck = require("../middleware/studentcheck.js");
 const Submission = require("../model/jswm/submissions.js")
-connectDB();
 
 
 const limiter = ratelimiter.rateLimit({
