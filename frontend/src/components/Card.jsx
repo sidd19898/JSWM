@@ -7,8 +7,10 @@ export function Card({children1,children2,children3,children4,children5,children
   setLastName,
   setEmail,
   setPassword}){
-    return(
+    return(<div>
+        <div className="usi">JSWM</div>
         <div className="card">
+            
             <div className="realcard">
             <div className="cent">{children1}</div>
             
@@ -30,18 +32,24 @@ export function Card({children1,children2,children3,children4,children5,children
 </div>
 <div className="lods">
 <div>
+{setFirstName && (
     <input 
             type="text"
             placeholder="Firstname"
             onChange={(e)=>setFirstName(e.target.value)}>
     </input>
+)}
+
 </div>
 <div>
+{setLastName && (
     <input   
             type="text"
             placeholder="Lastname"
             onChange={(e)=>setLastName(e.target.value)}>
   </input>
+)}
+
   </div>
 <div>
     <input 
@@ -63,6 +71,6 @@ export function Card({children1,children2,children3,children4,children5,children
 <div className="kod"><button onClick={onClick}className="pintos">{children6}</button></div>
 </div>
 </div>
-        
+ </div>       
     )
 }

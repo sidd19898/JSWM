@@ -1,6 +1,8 @@
+import "../pages/allinone.css"
+
 export default function Dashboard(){
     return(
-        <div>
+        <div className="space">
             welcome to dashboard
         </div>
     )

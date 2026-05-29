@@ -7,6 +7,16 @@ background-color: #191645;
 flex-direction: column;
 }
 
+.usi{
+    text-align: center;
+    padding: 1vmin;
+    font-size: 10vmin;
+    color: white;background-color: #191645;
+    border-bottom: white solid 0.5vmin;
+    position: fixed;
+    width: 100%;
+}
+
 .start{
     display: flex;
     flex-direction: column;
@@ -84,7 +94,7 @@ border: #191645 solid 2px;
 .realcard{
     background-color: white;
     color: #191645;
-    padding: 1vmax;
+    padding: 4vmin;
     width: fit-content;
     height: fit-content;
     border-radius: 2vmax;

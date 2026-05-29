@@ -1,9 +1,12 @@
+/*
 .Login .end .lods div:nth-child(3),
 .Login .end .lods div:nth-child(4) {
   display: none;
 }
+*/
 
 .Login .end .psd div:nth-child(3),
 .Login .end .psd div:nth-child(4){
     display: none;
 }
+

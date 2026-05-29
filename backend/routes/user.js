@@ -38,7 +38,7 @@ router.post("/signup", jsonParser,async(req,res)=>{
             message:"input is invalid"
         })
     }
-    console.log(req.body.firstname)
+    
     const present = await user.findOne({email:req.body.email})
 
     if(present){
@@ -57,7 +57,7 @@ router.post("/signup", jsonParser,async(req,res)=>{
     const role = await newUser.save()
                                                                 
     const userId = role._id;
-    console.log(userId);
+    
     const Token = jwt.sign({userId},JWT_SECRET);
 
     res.json({
@@ -77,7 +77,7 @@ router.post("/signin",jsonParser,async(req,res)=>{
    
     const {success} = case2.safeParse(req.body);
     if(!success){
-         return res.json({
+         return res.status(400).json({
             message:"input is invalid"
         })
     }
@@ -91,6 +91,7 @@ router.post("/signin",jsonParser,async(req,res)=>{
             JWT_SECRET);
 
         res.json({
+            message:"user logging in",
             token:token
         })
         

@@ -14,7 +14,8 @@ alert(response.data.message)
 }
 
 export const login = async(ema,pass) => {
-    const response = await API.post("/user/login",{
+       console.log("AUTH.JS", { ema, pass });
+    const response = await API.post("/user/signin",{
         email:ema,
         password:pass
     });

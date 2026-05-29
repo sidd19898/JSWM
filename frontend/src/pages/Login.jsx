@@ -10,14 +10,15 @@ const[password,setPassword] = useState("");
 const navigate = useNavigate();
 
 async function handleLogin(){
-    const response = await login(email,password)
-
+console.log("Email state:", email);
+    console.log("Password state:", password);
+const response = await login(email,password)
 
 if(response.status === 200){
       navigate("/dashboard")
 }
-}
 
+}
 return(
     <div className="Login">
         <Card children1={"Login"}  
