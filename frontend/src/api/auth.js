@@ -19,6 +19,7 @@ export const login = async(ema,pass) => {
         email:ema,
         password:pass
     });
+    localStorage.setItem("token",response.data.token)
     alert(response.data.message)
     return response;
 }

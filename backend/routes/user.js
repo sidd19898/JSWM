@@ -83,13 +83,13 @@ router.post("/signin",jsonParser,async(req,res)=>{
     }
 
     const validity = await user.findOne({email:req.body.email,password:req.body.password})
-
+console.log(validity);
     if(validity){
         
         const token = jwt.sign(
             {userId:validity._id},
             JWT_SECRET);
-
+console.log(token);
         res.json({
             message:"user logging in",
             token:token
