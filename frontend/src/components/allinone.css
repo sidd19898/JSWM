@@ -110,18 +110,20 @@ border: #191645 solid 2px
     display: flex;
     border-radius: 11vmin;
     align-items: center;
-    gap: 10vmin;
-    
+    padding-right: 1.5rem;
+    height: 7vmin;
+    gap: 39.5vmin;
 }
 
 .det{
     color: white;
-    border: white solid 0.5px;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
-    border-radius: 0.2rem;
+    border: white solid 0.1vmin;
+    padding-top: 1vmin;
+    padding-bottom: 1vmin;
+    padding-left: 2vmin;
+    padding-right: 2vmin;
+    border-radius: 0.5vmin;
+    font-size: 2.5vmin;
 }
 
 .det:hover{
@@ -131,8 +133,44 @@ border: #191645 solid 2px
 .operator{
     margin-top: 1rem;
     background-color: #191645;
-    height: 20rem;
-    border-radius: 11vmin;
+    border-radius: 5vmin;
+    color:white;
+    display: flex;
+    justify-content: space-between;
+    padding: 5vmin;
+    width: 150vmin;
+    height: 85vmin;
 }
 
+.ld{
+    display: flex;
+    gap:1rem;
+}
+
+.SideBar{
+       margin-top: 1rem;
+    background-color: #191645;
+    border-radius: 5vmin;
+    color:white;
+    padding: 5vmin;
+    width: 45vmin;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4vmin;
+    justify-content: center;
+}
+
+.button1{
+    background-color: white;
+    color: #191645;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    border-radius: 0.2rem;
+    width: 28vmin;
+    text-align: center;
+    font-size: 4vmin;
+}
 

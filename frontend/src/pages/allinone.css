@@ -3,3 +3,9 @@
     background-color: white;
     padding: 2vmin;
 }
+
+.sep{
+    display: flex;
+    justify-content: space-between;
+    gap: 2vmin;
+}

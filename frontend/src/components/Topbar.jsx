@@ -7,11 +7,8 @@ export function Topbar(){
     return(
         <div>
         <div className="topbar">
-        <AccountCircleIcon sx={{color:"white",fontSize:"2.5rem"}}></AccountCircleIcon>
+        <AccountCircleIcon sx={{color:"white",fontSize:"6vmin"}}></AccountCircleIcon>
         <Button children1={"Task"}></Button>
-        </div>
-        <div>
-        <Operator></Operator>
         </div>
         </div>
     )
