@@ -135,8 +135,6 @@ border: #191645 solid 2px
     background-color: #191645;
     border-radius: 5vmin;
     color:white;
-    display: flex;
-    justify-content: space-between;
     padding: 5vmin;
     width: 150vmin;
     height: 85vmin;
@@ -145,6 +143,9 @@ border: #191645 solid 2px
 .ld{
     display: flex;
     gap:1rem;
+    align-items: center;
+    justify-content: space-between;
+    
 }
 
 .SideBar{
@@ -161,6 +162,7 @@ border: #191645 solid 2px
     justify-content: center;
 }
 
+
 .button1{
     background-color: white;
     color: #191645;
@@ -174,3 +176,42 @@ border: #191645 solid 2px
     font-size: 4vmin;
 }
 
+.button1:hover{
+    cursor: pointer;
+    background-color: #191645;
+    color: white;
+    border: white solid 0.2vmin;
+    
+}
+.button2{
+    border: white solid 0.2vmin;
+    background-color: #43C6AC;
+    color: #191645;
+    padding-top: 1vmin;
+    padding-bottom: 1vmin;
+    padding-left: 2vmin;
+    padding-right: 2vmin;
+    border-radius: 3vmin;
+    font-size: 2vmin;
+}
+.button2:hover{
+    cursor: pointer;
+    background-color: #191645;
+    color: #43C6AC;
+    border: white solid 0.3vmin;
+}
+
+.fdg{
+    display: flex;
+    align-items: center;
+    gap: 3vmin;
+}
+
+.pohf:hover{
+cursor: pointer;
+
+}
+
+.remindar{
+    border: #43C6AC solid 0.5vmin;
+}

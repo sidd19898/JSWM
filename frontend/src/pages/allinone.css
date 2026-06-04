@@ -7,5 +7,6 @@
 .sep{
     display: flex;
     justify-content: space-between;
-    gap: 2vmin;
+    gap: 4vmin;
+    margin-top: 2vmin;
 }
