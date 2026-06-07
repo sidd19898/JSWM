@@ -145,7 +145,6 @@ border: #191645 solid 2px
     gap:1rem;
     align-items: center;
     justify-content: space-between;
-    border: solid red 1px;
 }
 
 .SideBar{
@@ -239,6 +238,9 @@ cursor: pointer;
  margin-left: 1vmin;
 }
 
-
-
-
+.taskview{
+    background-color: white;
+    margin-top: 5vmin;
+    border-radius: 5vmin;
+    height: 60vmin;
+}

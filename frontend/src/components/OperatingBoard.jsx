@@ -2,6 +2,7 @@ import "./allinone.css"
 import MicIcon from '@mui/icons-material/Mic';
 import { Button2 } from "./Button2";
 import { Reminder } from "./reminder";
+import { Taskview } from "./Taskview";
 
 export function Operator(){
     return(
@@ -15,6 +16,9 @@ export function Operator(){
                  <div>
                      <div><Reminder children1={"Reminders"} children2={0}></Reminder></div>
                  </div>
+            </div>
+            <div>
+                <Taskview></Taskview>
             </div>
         </div>
       
