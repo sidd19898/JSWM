@@ -74,7 +74,7 @@ const case2 = z.object({
 })
 
 router.post("/signin",jsonParser,async(req,res)=>{
-   
+   console.log("hitting")
     const {success} = case2.safeParse(req.body);
     if(!success){
          return res.status(400).json({

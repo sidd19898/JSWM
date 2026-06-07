@@ -1,9 +1,15 @@
 import "../components/allinone.css"
 
-export function Reminder({children1}) {
+export function Reminder({children1,children2}) {
   return (
-    <div className="remindar">
+    <div className="dosj">
+<div className="remindar">
       {children1}
+      </div>
+      <div className="numbers">
+      {children2}
+      </div>
     </div>
+    
   )
 }

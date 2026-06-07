@@ -13,7 +13,7 @@ export function Operator(){
                      <div><Button2 children1={"Delete Task"}></Button2></div>
                  </div>
                  <div>
-                     <div><Reminder children1={"Reminders"}></Reminder></div>
+                     <div><Reminder children1={"Reminders"} children2={0}></Reminder></div>
                  </div>
             </div>
         </div>
