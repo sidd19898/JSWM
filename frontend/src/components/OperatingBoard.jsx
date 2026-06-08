@@ -18,8 +18,7 @@ export function Operator(){
                  </div>
             </div>
             <div>
-                <Taskview>
-                </Taskview>
+                <Taskview></Taskview>
             </div>
         </div>
       
