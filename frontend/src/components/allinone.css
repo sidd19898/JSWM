@@ -243,4 +243,17 @@ cursor: pointer;
     margin-top: 5vmin;
     border-radius: 5vmin;
     height: 60vmin;
+    color: #191645;
+    padding: 4vmin;
+}
+
+.topside{
+ display:flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.bin:hover{
+cursor: pointer;
+height: fit-content;
 }
