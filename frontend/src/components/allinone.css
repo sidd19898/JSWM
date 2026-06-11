@@ -290,3 +290,37 @@ height: fit-content;
 .gro{
     display: flex;
 }
+
+.end{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.asdfgxcv{
+    font-size: 5vmin;
+    text-align: center;
+    margin-bottom: 2vmin;
+}
+
+.lkjn:hover{
+cursor: pointer;
+}
+
+.bshfs{
+    display: flex;
+    align-items: center;
+    gap: 2vmin;
+    font-size: 3vmin;
+    justify-content: center;
+    margin-bottom: 1vmin;
+}
+
+.fgk{
+    height: 3vmin;
+    margin-top: 0.4vmin;
+}
+
+.kjdf{
+width: 5vmin;
+}
+

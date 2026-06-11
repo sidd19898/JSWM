@@ -7,7 +7,7 @@ import { Addtask } from "./Addtask";
 import { useState } from "react";
 
 export function Operator(){
-    const[isActive,setisActive] =useState(false);
+    const[isActive,setisActive] =useState(true);
     return(
         <div className="operator">
             <div className="ld">
