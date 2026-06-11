@@ -245,6 +245,7 @@ cursor: pointer;
     height: 60vmin;
     color: #191645;
     padding: 4vmin;
+    width: 150vmin;
 }
 
 .topside{
@@ -268,4 +269,24 @@ height: fit-content;
     padding-right: 7vmin;
     margin-top: 1vmin;
     border-radius: 0.5vmin;
+}
+
+.addtask{
+    background-color: white;
+    margin-right: 5vmin;
+    height: 60vmin;
+    margin-top: 5vmin;
+    width: 50vmin;
+    border-radius: 5vmin;
+    color: #191645;
+    padding: 5vmin;
+    display: none;
+}
+
+.addtask.is-visible{
+    display: block;
+}
+
+.gro{
+    display: flex;
 }
