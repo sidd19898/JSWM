@@ -1,5 +1,6 @@
 import "../components/allinone.css"
 import ClearIcon from '@mui/icons-material/Clear';
+import { Button3 } from "./Button3";
 
 export function Addtask({isActive}){
     
@@ -11,7 +12,12 @@ export function Addtask({isActive}){
                     </ClearIcon>
                 </button>
             </div>
+            <hr></hr>
             <div className="asdfgxcv">Task Detail</div>
+            <hr></hr>
+            <div className="maind">
+
+            
             <div className="bshfs">
                 <div className="kjdf">Title</div>
                 <div>:</div>
@@ -31,6 +37,12 @@ export function Addtask({isActive}){
                 <div className="kjdf">Date</div>
                 <div>:</div>
                 <div><input className="fgk"></input></div>
+            </div>
+
+            </div>
+            
+            <div className="gopds">
+                <Button3 children1={"submit"}></Button3>
             </div>
         </div>
     )
