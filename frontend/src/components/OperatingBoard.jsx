@@ -21,7 +21,7 @@ export function Operator(){
                  </div>
             </div>
             <div className="gro">
-                <Addtask isActive={isActive}></Addtask>
+                <Addtask isActive={isActive} setisActive={setisActive}></Addtask>
                 <Taskview></Taskview>
             </div>
         </div>

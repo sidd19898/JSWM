@@ -348,4 +348,7 @@ border: #191645 solid 0.2vmin;
 
 .button3:hover{
     cursor: pointer;
+    background-color: #191645;
+    color: #43C6AC;
+    border: solid #43C6AC 1px;
 }

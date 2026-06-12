@@ -2,12 +2,14 @@ import "../components/allinone.css"
 import ClearIcon from '@mui/icons-material/Clear';
 import { Button3 } from "./Button3";
 
-export function Addtask({isActive}){
-    
+export function Addtask({isActive,setisActive}){
+    function godsep(){
+    setisActive(true);
+    }
     return(
         <div className={`addtask ${!isActive ? "is-visible" : ""}`}>
             <div className="end">
-                <button className="lkjn">
+                <button className="lkjn" onClick={godsep}>
                     <ClearIcon sx={{fontSize:"5vmin"}}>
                     </ClearIcon>
                 </button>
@@ -16,8 +18,6 @@ export function Addtask({isActive}){
             <div className="asdfgxcv">Task Detail</div>
             <hr></hr>
             <div className="maind">
-
-            
             <div className="bshfs">
                 <div className="kjdf">Title</div>
                 <div>:</div>
