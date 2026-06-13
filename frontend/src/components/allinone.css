@@ -352,3 +352,15 @@ border: #191645 solid 0.2vmin;
     color: #43C6AC;
     border: solid #43C6AC 1px;
 }
+.today{
+    font-size: 5vmin;
+}
+
+button:hover{
+    cursor:pointer
+}
+.cal{
+    border: none;
+    width: fit-content;
+    color: #191645;
+}
