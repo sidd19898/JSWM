@@ -6,6 +6,7 @@ import dayjs from "dayjs";
 import { useState } from "react";
 import ClearIcon from '@mui/icons-material/Clear';
 import { Button3 } from "./Button3";
+import { createTasks } from "../api/tasks";
 
 export function Addtask({isActive,setisActive}){
     function godsep(){
@@ -14,6 +15,20 @@ export function Addtask({isActive,setisActive}){
 
 const [currentDate, setCurrentDate] = useState(new Date());
 const [time, setTime] = useState(null);
+const [Title,setTitle] = useState("");
+const [From,setFrom] = useState("");
+const [To,setTo] = useState("");
+const [Dated,setDated] = useState("");
+
+async function createTask() {
+  const response = await createTasks(
+    Title,
+    From,
+    To,
+    Dated
+  )
+  
+}
 
 
     return(
@@ -28,18 +43,25 @@ const [time, setTime] = useState(null);
             <div className="asdfgxcv">Task Detail</div>
             <hr></hr>
             <div className="maind">
+
             <div className="bshfs">
                 <div className="kjdf">Title</div>
                 <div>:</div>
-                <div><input className="fgk"></input></div>
+                <div><input className="fgk"
+                onChange={(e)=>setTitle(e.target.value)}></input></div>
             </div>
+
             <div className="bshfs">
                 <div className="kjdf">From</div>
                 <div>:</div>
                 <div>
 
 <LocalizationProvider dateAdapter={AdapterDayjs}>
-        <TimePicker
+        <TimePicker 
+          onChange={(newValue) => {
+    setFrom(newValue ? newValue.format("hh:mm A") : "");
+  }}
+  
           slotProps={{
             textField: {
               fontSize:"5px",
@@ -63,18 +85,23 @@ const [time, setTime] = useState(null);
               },
             },
           }}
-        />
+        ></TimePicker>
     </LocalizationProvider>
 
                 </div>
             </div>
+
+
+
             <div className="bshfs">
                 <div className="kjdf">To</div>
                 <div>:</div>
                 <div>
 
  <LocalizationProvider dateAdapter={AdapterDayjs}>
-        <TimePicker
+        <TimePicker onChange={(newValue) => {
+    setTo(newValue ? newValue.format("hh:mm A") : "");
+  }}
           slotProps={{
             textField: {
               fontSize:"5px",
@@ -103,17 +130,22 @@ const [time, setTime] = useState(null);
 
                 </div>
             </div>
+
+
+
+
             <div className="bshfs">
                 <div className="kjdf">Date</div>
                 <div>:</div>
                 <div><input className="fgk" type="date" value={currentDate.toISOString().split('T')[0]}
-                onChange={(e) => setCurrentDate(new Date(e.target.value))}></input></div>
+                onChange={(e) => setCurrentDate(new Date(e.target.value))}
+                onChange={(e)=>setDate(e.target.value)}></input></div>
             </div>
 
             </div>
             
             <div className="gopds">
-                <Button3 children1={"submit"}></Button3>
+                <Button3 children1={"submit"} onclick={createTask}></Button3>
             </div>
         </div>
     )
