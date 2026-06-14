@@ -1,8 +1,11 @@
 import "../components/allinone.css"
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { TimePicker } from "@mui/x-date-pickers/TimePicker";
+import dayjs from "dayjs";
+import { useState } from "react";
 import ClearIcon from '@mui/icons-material/Clear';
 import { Button3 } from "./Button3";
-import { useState } from "react";
-import TimePicker from 'react-time-picker';
 
 export function Addtask({isActive,setisActive}){
     function godsep(){
@@ -10,7 +13,8 @@ export function Addtask({isActive,setisActive}){
     }
 
 const [currentDate, setCurrentDate] = useState(new Date());
-const [value, onChange] = useState('10:00');
+const [time, setTime] = useState(null);
+
 
     return(
         <div className={`addtask ${!isActive ? "is-visible" : ""}`}>
@@ -32,12 +36,72 @@ const [value, onChange] = useState('10:00');
             <div className="bshfs">
                 <div className="kjdf">From</div>
                 <div>:</div>
-                <div><input className="fgk"></input></div>
+                <div>
+
+<LocalizationProvider dateAdapter={AdapterDayjs}>
+        <TimePicker
+          slotProps={{
+            textField: {
+              fontSize:"5px",
+              sx: {
+                width: "20vmin",
+                 // 130.834 content + 7.38px left/right padding + 1px borders
+                '& .MuiPickersInputBase-root': {
+                  minHeight: 22.1, // compact field height based on the screenshot box model
+                
+                },
+                '& .MuiPickersSectionList-root': {
+                  py: '0px',
+                  px: '0px',
+                  minHeight: 0,
+                  
+                },
+                '& .MuiPickersInputBase-sectionsContainer': {
+                  minWidth: 75,
+                  
+                },
+              },
+            },
+          }}
+        />
+    </LocalizationProvider>
+
+                </div>
             </div>
             <div className="bshfs">
                 <div className="kjdf">To</div>
                 <div>:</div>
-                <div><TimePicker onChange={onChange} value={value} /></div>
+                <div>
+
+ <LocalizationProvider dateAdapter={AdapterDayjs}>
+        <TimePicker
+          slotProps={{
+            textField: {
+              fontSize:"5px",
+              sx: {
+                width: "20vmin",
+                 // 130.834 content + 7.38px left/right padding + 1px borders
+                '& .MuiPickersInputBase-root': {
+                  minHeight: 22.1, // compact field height based on the screenshot box model
+                
+                },
+                '& .MuiPickersSectionList-root': {
+                  py: '0px',
+                  px: '0px',
+                  minHeight: 0,
+                  
+                },
+                '& .MuiPickersInputBase-sectionsContainer': {
+                  minWidth: 75,
+                  
+                },
+              },
+            },
+          }}
+        />
+    </LocalizationProvider>
+
+                </div>
             </div>
             <div className="bshfs">
                 <div className="kjdf">Date</div>

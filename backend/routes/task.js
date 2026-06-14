@@ -26,7 +26,6 @@ const create = z.object({
     from:z.string(),
     to:z.string(),
     date:z.string(),
-    status:z.boolean(),
 })
 
 router.post("/create",jsonParser,authMiddleware,async(req,res) => {
@@ -53,7 +52,7 @@ router.post("/create",jsonParser,authMiddleware,async(req,res) => {
     From:req.body.from,
     To:req.body.to,
     Date:req.body.date,
-    Status:req.body.status,
+    Status:false,
     user_id:req.userId
     })
 
@@ -138,7 +137,11 @@ router.get("/read",jsonParser,authMiddleware,async(req,res) => {
 
     try{
     const gotit = await Task.find({user_id:req.userId});
-    res.send(gotit);
+    
+    res.json({
+        message:"found users data",
+        data:gotit
+    })
     }catch(err){
         console.log(err);
         res.status(500).send("error retrieving data");
