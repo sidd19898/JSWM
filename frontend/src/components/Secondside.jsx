@@ -1,12 +1,22 @@
+import { useState } from "react"
 import "../components/allinone.css"
 
 export function Secondside({children1,children2,children3,children4}){
+    const [isClicked,setisClicked] = useState(false);
+
+    const handleClick = () =>
+    {
+        setisClicked(!isClicked)
+    }
+    
     return(
-        <div className="gidon">
-<div>{children1}</div>
-<div>{children2}</div>
-<div>{children3}</div>
-<div>{children4}</div>
+        <button onClick={handleClick}>
+        <div className="gidon" style={{backgroundColor:isClicked ? "gray":" #191645",color:"white"}}>
+<div className="special">{children1}</div>
+<div className="special">{children2}</div>
+<div className="special">{children3}</div>
+<div className="special"><input type="checkbox" checked={children4} className="checker"></input></div>
         </div>
+        </button>
     )
 }

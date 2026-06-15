@@ -375,3 +375,15 @@ button:hover{
 .gidon > div:first-child{
     width: 30vmin;
 }
+
+.checker{
+    height: 3vmin;
+}
+
+.special:hover{
+    cursor: pointer;
+}
+
+.special{
+   width: 32.5vmin; 
+}
