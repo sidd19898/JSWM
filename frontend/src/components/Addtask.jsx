@@ -33,6 +33,7 @@ async function createTask() {
 
     return(
         <div className={`addtask ${!isActive ? "is-visible" : ""}`}>
+          <div className="ghsdhj">
             <div className="end">
                 <button className="lkjn" onClick={godsep}>
                     <ClearIcon sx={{fontSize:"5vmin"}}>
@@ -62,7 +63,7 @@ async function createTask() {
     setFrom(newValue ? newValue.format("hh:mm A") : "");
   }}
   
-          slotProps={{
+         slotProps={{
             textField: {
               fontSize:"5px",
               sx: {
@@ -79,7 +80,7 @@ async function createTask() {
                   
                 },
                 '& .MuiPickersInputBase-sectionsContainer': {
-                  minWidth: 75,
+                  minWidth: "5vmin",
                   
                 },
               },
@@ -119,7 +120,7 @@ async function createTask() {
                   
                 },
                 '& .MuiPickersInputBase-sectionsContainer': {
-                  minWidth: 75,
+                  minWidth: "5vmin",
                   
                 },
               },
@@ -147,6 +148,7 @@ async function createTask() {
             <div className="gopds">
                 <Button3 children1={"submit"} onclick={createTask}></Button3>
             </div>
+</div>
         </div>
     )
 }

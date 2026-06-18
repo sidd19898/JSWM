@@ -40,7 +40,7 @@ font-size: 4vmin;
 .lods{
     display: flex;
     flex-direction: column;
-gap: 1vmin;
+    gap: 1vmin;
 }
 
 @media (max-width: 640px) {
@@ -135,9 +135,10 @@ border: #191645 solid 2px
     background-color: #191645;
     border-radius: 5vmin;
     color:white;
-    padding: 5vmin;
-    width: 160vmin;
-    height: 85vmin;
+    display: flex;
+    align-items: stretch;
+    flex-direction: column;
+    flex: 1;
 }
 
 .ld{
@@ -145,22 +146,29 @@ border: #191645 solid 2px
     gap:1rem;
     align-items: center;
     justify-content: space-between;
+    margin: 3vmin;
 }
 
 .SideBar{
-       margin-top: 1rem;
+    margin-top: 1rem;
     background-color: #191645;
     border-radius: 5vmin;
     color:white;
-    padding: 5vmin;
+    padding: 2vmin;
     width: 45vmin;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: stretch;
     gap: 4vmin;
     justify-content: center;
 }
 
+.poqwed{
+    display: flex;
+}
+.gro{
+    flex: 1;
+}
 
 .button1{
     background-color: white;
@@ -170,9 +178,10 @@ border: #191645 solid 2px
     padding-left: 1rem;
     padding-right: 1rem;
     border-radius: 0.2rem;
-    width: 28vmin;
+    min-width: 28vmin;
     text-align: center;
     font-size: 4vmin;
+    flex: 1;
 }
 
 .button1:hover{
@@ -240,16 +249,17 @@ cursor: pointer;
 
 .taskview{
     background-color: white;
-    margin-top: 5vmin;
     border-radius: 5vmin;
     height: 60vmin;
     color: #191645;
     padding: 4vmin;
-    width: 150vmin;
+    min-width: 0;
+    flex: 1;
+    margin: 2vmin;
 }
 
 .topside{
- display:flex;
+    display:flex;
     justify-content: space-between;
     align-items: center;
 }
@@ -266,29 +276,36 @@ height: fit-content;
     background-color: #191645;
     padding: 1vmin;
     padding-left: 7vmin;
-    padding-right: 7vmin;
     margin-top: 1vmin;
     border-radius: 0.5vmin;
+    gap: 2vmin;
+    font-size: 2.5vmin;
+    align-items: center;
+}
+
+.gro{
+    display: flex;
+    flex-direction: row;
+    gap: 2vmin;
+    align-items: top;
 }
 
 .addtask{
     background-color: white;
-    margin-right: 5vmin;
-    height: 60vmin;
-    margin-top: 5vmin;
-    width: 50vmin;
     border-radius: 5vmin;
     color: #191645;
-    padding: 5vmin;
     display: none;
-box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;}
+    margin: 2vmin;
+    height: 59.9vmin;
+    box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+}
 
 .addtask.is-visible{
     display: block;
 }
 
-.gro{
-    display: flex;
+.ghsdhj{
+    margin: 5vmin;
 }
 
 .end{
@@ -355,6 +372,7 @@ border: #191645 solid 0.2vmin;
     color: #43C6AC;
     border: solid #43C6AC 1px;
 }
+
 .today{
     font-size: 5vmin;
 }
@@ -362,28 +380,64 @@ border: #191645 solid 0.2vmin;
 button:hover{
     cursor:pointer
 }
+
 .cal{
     border: none;
-    width: fit-content;
     color: #191645;
-}
-
-.shds{
     font-size: 3vmin;
 }
 
-.gidon > div:first-child{
-    width: 30vmin;
+
+.shds{
+    font-size: 3vmin;
+    display: flex;
+    align-items: stretch;
+    flex-direction: column;
 }
+
 
 .checker{
     height: 3vmin;
+    width: 3vmin;
 }
 
 .special:hover{
     cursor: pointer;
 }
 
-.special{
-   width: 32.5vmin; 
+@media (max-width: 1419px) {
+    .gro{
+        flex-direction: column-reverse;
+    }
 }
+
+@media (max-width: 640px) {
+    .addtask.is-visible{
+    flex: 1;    
+}
+}
+
+@media(max-width:2027px){
+    .SideBar{
+        min-width: 30vmin;
+    }
+    .button1{
+        flex: 1;
+        font-size: 3vmin;
+        min-width: 15vmin;
+    }
+    .poqwed{
+        align-self: stretch;
+        display: flex;
+    }
+}
+
+@media(max-width:1867px){
+    .SideBar{
+        display: none;
+    }
+}
+
+
+
+

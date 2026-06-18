@@ -47,6 +47,7 @@ console.log(Tasks);
             <button onClick={() => changeDate(1)}><ArrowForwardIcon sx={{fontSize:"5vmin"}}></ArrowForwardIcon></button>
           </div>
       </div>
+      
       <div className="shds">
        {Tasks.map(task => (
     <Secondside
@@ -57,6 +58,7 @@ console.log(Tasks);
     />
 ))}
       </div>
+      
     </div>
   )
 }

@@ -20,9 +20,11 @@ export function Operator(){
                      <div><Reminder children1={"Reminders"} children2={0}></Reminder></div>
                  </div>
             </div>
-            <div className="gro">
+            <div className="gro">  
                 <Addtask isActive={isActive} setisActive={setisActive}></Addtask>
+                
                 <Taskview></Taskview>
+            
             </div>
         </div>
     )
