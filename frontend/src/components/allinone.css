@@ -108,11 +108,12 @@ border: #191645 solid 2px
     background-color: #191645;
     padding: 0.5rem;
     display: flex;
+    justify-content: space-between;
     border-radius: 11vmin;
     align-items: center;
     padding-right: 1.5rem;
     height: 7vmin;
-    gap: 39.5vmin;
+    
 }
 
 .det{
@@ -154,7 +155,7 @@ border: #191645 solid 2px
     background-color: #191645;
     border-radius: 5vmin;
     color:white;
-    padding: 2vmin;
+    padding: 4vmin;
     width: 45vmin;
     display: flex;
     flex-direction: column;
@@ -173,10 +174,7 @@ border: #191645 solid 2px
 .button1{
     background-color: white;
     color: #191645;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
+    padding: 2vmin;
     border-radius: 0.2rem;
     min-width: 28vmin;
     text-align: center;
@@ -256,6 +254,7 @@ cursor: pointer;
     min-width: 0;
     flex: 1;
     margin: 2vmin;
+    align-self: center;
 }
 
 .topside{
@@ -297,10 +296,17 @@ height: fit-content;
     display: none;
     margin: 2vmin;
     height: 59.9vmin;
+    width: 50vmin;
+    align-self: center;
     box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
 }
 
 .addtask.is-visible{
+    display: block;
+    
+}
+
+.SideBar.is-visible{
     display: block;
 }
 
@@ -405,10 +411,16 @@ button:hover{
     cursor: pointer;
 }
 
-@media (max-width: 1419px) {
+@media (max-width: 1722px) {
     .gro{
         flex-direction: column-reverse;
     }
+
+    .taskview{
+        align-self: auto;
+        height: 59.9vmin;
+    }
+
 }
 
 @media (max-width: 640px) {
@@ -420,11 +432,12 @@ button:hover{
 @media(max-width:2027px){
     .SideBar{
         min-width: 30vmin;
+        align-self: stretch;
     }
     .button1{
         flex: 1;
         font-size: 3vmin;
-        min-width: 15vmin;
+        min-width: 23vmin;
     }
     .poqwed{
         align-self: stretch;
@@ -432,10 +445,14 @@ button:hover{
     }
 }
 
-@media(max-width:1867px){
-    .SideBar{
-        display: none;
-    }
+
+
+.show {
+  display: block;
+}
+
+.hide {
+  display: none;
 }
 
 

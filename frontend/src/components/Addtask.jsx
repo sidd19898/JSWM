@@ -64,18 +64,17 @@ async function createTask() {
   }}
   
          slotProps={{
-            textField: {
-              fontSize:"5px",
+           
+          
+          textField: {
+              fontSize:"0px",
               sx: {
                 width: "20vmin",
                  // 130.834 content + 7.38px left/right padding + 1px borders
-                '& .MuiPickersInputBase-root': {
-                  minHeight: 22.1, // compact field height based on the screenshot box model
-                
-                },
+              
                 '& .MuiPickersSectionList-root': {
-                  py: '0px',
-                  px: '0px',
+                  py: '0vmin',
+                  px: '0vmin',
                   minHeight: 0,
                   
                 },
@@ -83,9 +82,20 @@ async function createTask() {
                   minWidth: "5vmin",
                   
                 },
+                '& .css-1014916-MuiPickersInputBase-root-MuiPickersOutlinedInput-root':{
+                  height:"5vmin",
+                  
+                  
+                },
+                '& .css-1umw9bq-MuiSvgIcon-root':{
+                  width:"4vmin",
+                  height:"4vmin"
+                }
+                
               },
             },
           }}
+          
         ></TimePicker>
     </LocalizationProvider>
 
@@ -109,10 +119,7 @@ async function createTask() {
               sx: {
                 width: "20vmin",
                  // 130.834 content + 7.38px left/right padding + 1px borders
-                '& .MuiPickersInputBase-root': {
-                  minHeight: 22.1, // compact field height based on the screenshot box model
-                
-                },
+               
                 '& .MuiPickersSectionList-root': {
                   py: '0px',
                   px: '0px',
@@ -123,6 +130,16 @@ async function createTask() {
                   minWidth: "5vmin",
                   
                 },
+                '& .css-1014916-MuiPickersInputBase-root-MuiPickersOutlinedInput-root':{
+                  height:"5vmin",
+                  fontSize:"2vmin"
+                  
+                  
+                },
+                '& .css-1umw9bq-MuiSvgIcon-root':{
+                  width:"4vmin",
+                  height:"4vmin"
+                }
               },
             },
           }}
