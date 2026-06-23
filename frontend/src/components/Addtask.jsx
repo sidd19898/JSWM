@@ -13,24 +13,27 @@ export function Addtask({isActive,setisActive}){
     setisActive(true);
     }
 
-const [currentDate, setCurrentDate] = useState(new Date());
+
 const [time, setTime] = useState(null);
 const [Title,setTitle] = useState("");
 const [From,setFrom] = useState("");
 const [To,setTo] = useState("");
-const [Dated,setDated] = useState("");
+const [Dated,setDated] = useState(new Date());
 
 async function createTask() {
   const response = await createTasks(
     Title,
     From,
     To,
-    Dated
+    isoDate
   )
   
 }
 
 
+const isoDate = Dated.toISOString().split("T")[0];
+
+console.log(isoDate);
     return(
         <div className={`addtask ${!isActive ? "is-visible" : ""}`}>
           <div className="ghsdhj">
@@ -64,8 +67,6 @@ async function createTask() {
   }}
   
          slotProps={{
-           
-          
           textField: {
               fontSize:"0px",
               sx: {
@@ -154,9 +155,9 @@ async function createTask() {
             <div className="bshfs">
                 <div className="kjdf">Date</div>
                 <div>:</div>
-                <div><input className="fgk" type="date" value={currentDate.toISOString().split('T')[0]}
-                onChange={(e) => setCurrentDate(new Date(e.target.value))}
-                onChange={(e)=>setDate(e.target.value)}></input></div>
+                <div><input className="fgk" type="date" 
+                value={Dated.toISOString().split('T')[0]}
+                onChange={(e) => setDated(new Date(e.target.value))}></input></div>
             </div>
 
             </div>

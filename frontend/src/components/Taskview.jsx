@@ -11,14 +11,23 @@ export function Taskview() {
   const [currentDate, setcurrentDate] = useState(new Date());
   const [Tasks,setTasks] = useState([]);
   const [num,setnum] = useState(0)
-
   const change = () => {
     const newnum = setnum(num + 1)
     
   }
 
   useEffect(() => {
-console.log("hit")
+
+const fetchTasks = async () => {
+      const response = await getTasks(iso);
+      setTasks(response);
+    };
+
+    fetchTasks();
+
+
+
+
   },[num])
 
   const changeDate = (daysAmount) => {
@@ -29,16 +38,9 @@ console.log("hit")
     })
   }
 
-    useEffect(() => {
-    const fetchTasks = async () => {
-      const response = await getTasks();
-      setTasks(response);
-    };
 
-    fetchTasks();
-  }, []); // Runs only on initial render
+const iso = currentDate.toISOString().split("T")[0];
 
-console.log(Tasks);
   return (
     <div className="taskview">
       <div className="topside">

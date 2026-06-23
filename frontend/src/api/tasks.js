@@ -1,9 +1,9 @@
 import ClickAwayListener from "@mui/material/ClickAwayListener";
 import API from "./axios"
 
-export const getTasks = async () => {
+export const getTasks = async (date) => {
 
-    const response = await API.get("/task/read",{
+    const response = await API.get(`/task/read/${date}`,{
         
     });
 

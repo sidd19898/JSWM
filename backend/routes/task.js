@@ -133,10 +133,11 @@ router.delete("/delete/:id",jsonParser,authMiddleware,async(req,res) => {
 });
 
 
-router.get("/read",jsonParser,authMiddleware,async(req,res) => {
+router.get("/read/:date",jsonParser,authMiddleware,async(req,res) => {
 
     try{
-    const gotit = await Task.find({user_id:req.userId});
+    const date = req.params.date;
+    const gotit = await Task.find({Date:date});
     
     res.json({
         message:"found users data",
