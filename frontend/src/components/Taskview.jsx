@@ -10,6 +10,16 @@ export function Taskview() {
 
   const [currentDate, setcurrentDate] = useState(new Date());
   const [Tasks,setTasks] = useState([]);
+  const [num,setnum] = useState(0)
+
+  const change = () => {
+    const newnum = setnum(num + 1)
+    
+  }
+
+  useEffect(() => {
+console.log("hit")
+  },[num])
 
   const changeDate = (daysAmount) => {
     setcurrentDate((prevDate) => {
@@ -37,14 +47,13 @@ console.log(Tasks);
             <input
   type="date"
   value={currentDate.toISOString().split("T")[0]}
-  min={currentDate.toISOString().split("T")[0]}
-  max="2026-12-31"
+  onChange={(e) => {setcurrentDate(new Date(e.target.value));change();}}
   className="cal"
 />
           </div>
           <div>
-            <button onClick={() => changeDate(-1)}><ArrowBackIcon sx={{fontSize:"5vmin"}}></ArrowBackIcon></button>
-            <button onClick={() => changeDate(1)}><ArrowForwardIcon sx={{fontSize:"5vmin"}}></ArrowForwardIcon></button>
+            <button onClick={() => {changeDate(-1); change();}}><ArrowBackIcon sx={{fontSize:"5vmin"}}></ArrowBackIcon></button>
+            <button onClick={() => {changeDate(1); change();}}><ArrowForwardIcon sx={{fontSize:"5vmin"}}></ArrowForwardIcon></button>
           </div>
       </div>
       

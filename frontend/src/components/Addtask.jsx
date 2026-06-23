@@ -117,12 +117,12 @@ async function createTask() {
             textField: {
               fontSize:"5px",
               sx: {
-                width: "20vmin",
+            width: "20vmin",
                  // 130.834 content + 7.38px left/right padding + 1px borders
-               
+              
                 '& .MuiPickersSectionList-root': {
-                  py: '0px',
-                  px: '0px',
+                  py: '0vmin',
+                  px: '0vmin',
                   minHeight: 0,
                   
                 },
@@ -132,7 +132,6 @@ async function createTask() {
                 },
                 '& .css-1014916-MuiPickersInputBase-root-MuiPickersOutlinedInput-root':{
                   height:"5vmin",
-                  fontSize:"2vmin"
                   
                   
                 },
