@@ -39,7 +39,7 @@ router.post("/create",jsonParser,authMiddleware,async(req,res) => {
         })
     }
 
-    const present = await Task.findOne({Title:req.body.title,user_id:req.userId});
+    const present = await Task.findOne({Title:req.body.title,user_id:req.userId,From:req.body.from,To:req.body.to,Date:req.body.date});
     
     if(present){
         res.json({

@@ -25,9 +25,6 @@ const fetchTasks = async () => {
 
     fetchTasks();
 
-
-
-
   },[num])
 
   const changeDate = (daysAmount) => {
@@ -66,6 +63,7 @@ const iso = currentDate.toISOString().split("T")[0];
         children2={task.From}
         children3={task.To}
         children4={task.Status}
+        children5={task._id}
     />
 ))}
       </div>

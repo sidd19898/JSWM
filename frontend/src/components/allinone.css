@@ -270,6 +270,7 @@ height: fit-content;
 
 .gidon{
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
     color: white;
     background-color: #191645;

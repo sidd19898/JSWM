@@ -33,7 +33,7 @@ async function createTask() {
 
 const isoDate = Dated.toISOString().split("T")[0];
 
-console.log(isoDate);
+
     return(
         <div className={`addtask ${!isActive ? "is-visible" : ""}`}>
           <div className="ghsdhj">
