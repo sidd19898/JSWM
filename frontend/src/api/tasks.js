@@ -23,9 +23,9 @@ export const createTasks = async (title,from,to,date) => {
     alert(response.data.message)
 }
 
-export const deleteTasks = async (children5) => {
+export const deleteTasks = async (id) => {
     
-    const response = await API.delete(`/task/delete/${children5}`,{
+    const response = await API.delete(`/task/delete/${id}`,{
         
     })
 

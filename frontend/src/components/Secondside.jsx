@@ -1,19 +1,33 @@
-import { useState } from "react"
+import { useEffect,useState } from "react"
 import "../components/allinone.css"
 import { deleteTasks } from "../api/tasks";
 
-export function Secondside({children1,children2,children3,children4,children5,Key}){
+export function Secondside({children1,children2,children3,children4,children5,deleteclick}){
     const [isClicked,setisClicked] = useState(false);
-
-    const handleClick = async () =>
+    const [id,setid] = useState()
+    
+    const handleClick = () =>
     {
         setisClicked(!isClicked)
-
-        const response = await deleteTasks(
-            children5
-          )
-
+        setid(children5)      
     }
+ 
+
+
+
+    useEffect( () => {
+        
+        const removeTasks = async () => {
+        const response = await deleteTasks(
+            id
+          )
+        };
+        
+        removeTasks();
+    },[deleteclick])
+
+
+    
     
     return(
         <button onClick={handleClick}>
