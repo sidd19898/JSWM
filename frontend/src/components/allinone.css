@@ -17,6 +17,14 @@ flex-direction: column;
     width: 100%;
 }
 
+.hopst{
+    flex: 1;
+}
+
+.gitods{
+    display: flex;
+    flex: 1;
+}
 .start{
     display: flex;
     flex-direction: column;

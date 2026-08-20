@@ -66,7 +66,7 @@ const iso = currentDate.toISOString().split("T")[0];
       
       <div className="shds">
        {Tasks.map(task => (
-        <li key={task._id}>
+        <li className="gitods" key={task._id}>
     <Secondside
         children1={task.Title}
         children2={task.From}

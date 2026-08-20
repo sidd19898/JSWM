@@ -8,5 +8,5 @@ import '@fontsource/roboto/700.css';
 
 
 createRoot(document.getElementById('root')).render(
-    <App />,
+  <App />
 )

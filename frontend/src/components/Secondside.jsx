@@ -30,7 +30,7 @@ export function Secondside({children1,children2,children3,children4,children5,de
     
     
     return(
-        <button onClick={handleClick}>
+        <button className="hopst" onClick={handleClick}>
         <div className="gidon" style={{backgroundColor:isClicked ? "gray":" #191645",color:"white"}}>
 <div className="speciality">{children1}</div>
 <div className="special">{children2}</div>

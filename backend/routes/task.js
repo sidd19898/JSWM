@@ -114,9 +114,9 @@ router.put("/update/:id",jsonParser,authMiddleware,async(req,res) => {
 
 router.delete("/delete/:id",jsonParser,authMiddleware,async(req,res) => {
 
-    const paramValidation = docInput.safeParse(req.params);
+    const {success} = docInput.safeParse(req.params);
 
-    if(!paramValidation.success){
+    if(!success){
         res.json({
             message:"Input is not valid"
         })

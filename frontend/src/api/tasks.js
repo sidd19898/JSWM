@@ -31,3 +31,4 @@ export const deleteTasks = async (id) => {
 
     alert(response.data.message)
 }
+    
