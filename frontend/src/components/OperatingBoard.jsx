@@ -5,6 +5,7 @@ import { Reminder } from "./reminder";
 import { Taskview } from "./Taskview";
 import { Addtask } from "./Addtask";
 import { useState } from "react";
+import { RemovetaskProvider } from "../context/RemovetaskContext";
 
 export function Operator(){
     const[isActive,setisActive] =useState(true);
@@ -21,8 +22,9 @@ export function Operator(){
             </div>
             <div className="gro">  
                 <Addtask isActive={isActive} setisActive={setisActive}></Addtask>
-                
+                <RemovetaskProvider>
                 <Taskview></Taskview>
+                </RemovetaskProvider>
             
             </div>
         </div>

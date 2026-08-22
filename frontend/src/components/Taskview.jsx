@@ -3,19 +3,24 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { Secondside } from "./Secondside";
-import { useState,useEffect } from "react";
+import { useState,useEffect,useContext} from "react";
 import { getTasks } from "../api/tasks";
+import { useRemovetask } from "../context/RemovetaskContext";
+import { deleteTasks } from "../api/tasks";
 
 export function Taskview() {
 
-  const [num1,setnum1] = useState(0)
+  
   const [currentDate, setcurrentDate] = useState(new Date());
   const [Tasks,setTasks] = useState([]);
   const [num,setnum] = useState(0)
+  const { id, setid } = useRemovetask();
 
-  const change2 = () => {
-    const newnum1 = setnum1(num1 + 1)
-  }
+  const removeTasks = async () => {
+          const response = await deleteTasks(
+              id
+            )
+          };
 
   const change = () => {
     const newnum = setnum(num + 1)
@@ -49,7 +54,7 @@ const iso = currentDate.toISOString().split("T")[0];
   return (
     <div className="taskview">
       <div className="topside">
-          <div className="bin"><button onClick={change2}><DeleteIcon sx={{fontSize:"5vmin"}}></DeleteIcon></button></div>
+          <div className="bin"><button onClick={removeTasks}><DeleteIcon sx={{fontSize:"5vmin"}}></DeleteIcon></button></div>
           <div className="today">
             <input
   type="date"
@@ -73,7 +78,6 @@ const iso = currentDate.toISOString().split("T")[0];
         children3={task.To}
         children4={task.Status}
         children5={task._id}
-        deleteclick={num1}
     />
     </li>
 ))}
