@@ -7,18 +7,22 @@ import { useState } from "react";
 import ClearIcon from '@mui/icons-material/Clear';
 import { Button3 } from "./Button3";
 import { createTasks } from "../api/tasks";
+import { getTasks } from "../api/tasks";
+import { useTask } from "../context/TaskContext.jsx";
+
 
 export function Addtask({isActive,setisActive}){
     function godsep(){
     setisActive(true);
     }
 
-
+const { setTasks } = useTask();
 const [time, setTime] = useState(null);
 const [Title,setTitle] = useState("");
 const [From,setFrom] = useState("");
 const [To,setTo] = useState("");
 const [Dated,setDated] = useState(new Date());
+
 
 async function createTask() {
   const response = await createTasks(
@@ -27,13 +31,16 @@ async function createTask() {
     To,
     isoDate
   )
-  
-  
-}
 
+  await fetchTasks();
+}
 
 const isoDate = Dated.toISOString().split("T")[0];
 
+const fetchTasks = async () => {
+      const response = await getTasks(isoDate);
+      setTasks(response);
+    };
 
     return(
         <div className={`addtask ${!isActive ? "is-visible" : ""}`}>

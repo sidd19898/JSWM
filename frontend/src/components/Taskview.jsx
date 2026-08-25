@@ -7,12 +7,13 @@ import { useState,useEffect,useContext} from "react";
 import { getTasks } from "../api/tasks";
 import { useRemovetask } from "../context/RemovetaskContext";
 import { deleteTasks } from "../api/tasks";
+import { useTask } from "../context/TaskContext";
 
 export function Taskview() {
 
   
   const [currentDate, setcurrentDate] = useState(new Date());
-  const [Tasks,setTasks] = useState([]);
+  const { Tasks, setTasks } = useTask();
   const [num,setnum] = useState(0)
   const { id, setid } = useRemovetask();
 
@@ -20,6 +21,7 @@ export function Taskview() {
           const response = await deleteTasks(
               id
             )
+            await change();
           };
 
   const change = () => {

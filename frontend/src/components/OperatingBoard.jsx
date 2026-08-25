@@ -6,6 +6,7 @@ import { Taskview } from "./Taskview";
 import { Addtask } from "./Addtask";
 import { useState } from "react";
 import { RemovetaskProvider } from "../context/RemovetaskContext";
+import { TaskProvider } from "../context/TaskContext.jsx";
 
 export function Operator(){
     const[isActive,setisActive] =useState(true);
@@ -20,10 +21,14 @@ export function Operator(){
                      <div><Reminder children1={"Reminders"} children2={0}></Reminder></div>
                  </div>
             </div>
-            <div className="gro">  
-                <Addtask isActive={isActive} setisActive={setisActive}></Addtask>
+            <div className="gro">
+                
                 <RemovetaskProvider>
-                <Taskview></Taskview>
+                    <TaskProvider>
+                        <Addtask isActive={isActive} setisActive={setisActive}></Addtask>
+                <Taskview>
+                </Taskview>
+                    </TaskProvider>
                 </RemovetaskProvider>
             
             </div>
