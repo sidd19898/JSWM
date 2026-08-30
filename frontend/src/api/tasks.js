@@ -31,4 +31,16 @@ export const deleteTasks = async (id) => {
 
     alert(response.data.message)
 }
-    
+
+export const editTasks = async (id,title,from,to,date,status) => {
+
+    const response = await API.put(`/task/update/${id}`, {
+        title: title,
+        from: from,
+        to: to,
+        date: date,
+        status: status
+    });
+
+    alert(response.data.message)
+}

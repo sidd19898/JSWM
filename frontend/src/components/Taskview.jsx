@@ -80,6 +80,7 @@ const iso = currentDate.toISOString().split("T")[0];
         children3={task.To}
         children4={task.Status}
         children5={task._id}
+        date={iso}
     />
     </li>
 ))}
