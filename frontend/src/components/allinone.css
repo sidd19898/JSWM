@@ -7,6 +7,17 @@ background-color: #191645;
 flex-direction: column;
 }
 
+.need{
+    all: unset;
+}
+
+.need:hover{
+    border: none;
+    cursor: default;
+}
+
+
+
 .usi{
     text-align: center;
     padding: 1vmin;
@@ -471,6 +482,7 @@ button:hover{
 .hide {
   display: none;
 }
+
 
 
 
