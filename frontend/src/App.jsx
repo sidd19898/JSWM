@@ -8,13 +8,14 @@ import Habit from "./pages/Habit.jsx";
 import Collaboration from "./pages/Collaboration.jsx";
 import Education from "./pages/Education.jsx";
 import Taskview from "./pages/Taskview.jsx";
-
+import { SidebarProvider } from "./context/SidebarContext.jsx";
 
 
 function App() {
   
   return (
     <div>
+      <SidebarProvider>
       <BrowserRouter>
           <Routes>
             <Route path="/landing" element={<Landing/>}/>
@@ -28,6 +29,7 @@ function App() {
             <Route path="/taskview" element={<Taskview/>}/>
           </Routes>
         </BrowserRouter>
+        </SidebarProvider>
     </div>
   )
 }

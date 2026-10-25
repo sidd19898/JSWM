@@ -2,10 +2,11 @@ import { Topbar } from "../components/Topbar"
 import "../pages/allinone.css"
 import { SideBar } from "../components/SideBar"
 import { useState } from "react"
+import { useSidebar } from "../context/SidebarContext"
 
 export default function Collaboration(){
 
-    const [show, setShow] = useState(false);
+    const { show, setShow } = useSidebar(); 
     return(
         
         <div className="space">
